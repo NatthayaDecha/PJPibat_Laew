@@ -1,0 +1,38 @@
+.containerXL {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: #0077b6;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+}
+
+.header nav a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.footer {
+  background: #023e8a;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+}

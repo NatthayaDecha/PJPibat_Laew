@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export interface FloodFeature {
+interface FloodFeature {
   id: string;
   type: string;
   geometry: {
-    type: string;
+    tyoe: string;
     coordinates: number[][][][];
   };
   properties: {
@@ -48,45 +48,34 @@ export interface FloodFeature {
   };
 }
 
-export interface FloodResponse {
-  type: string;
-  numberMatched: number;
-  numberReturned: number;
-  timeStamp: string;
-  features: FloodFeature[];
-  links: {
-    href: string;
-    rel: string;
-    title?: string;
-    type?: string;
-  }[];
-}
-export default function FloodPage() {
+function FloodPage() {
   //ตัวแปร
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
   const provinces = [
-  { idn: "14", name: "พระนครศรีอยุธยา (อยุธยา)" },
-  { idn: "15", name: "อ่างทอง" },
-  { idn: "16", name: "ลบบุรี" },
-  { idn: "17", name: "สิงห์บุรี" },
-  {idn:"18",name:"ชัยนาท"},
-  {idn: "19", name: "สระบุรี" },
-  {idn:"21",name:"ระยอง"}
-];
-const [selectedProvinceIdn, setSelectedProvinceIdn] = useState<string>("14");
-const handleProvinceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    { idn: "14", name: "พระนครศรีอยุธยา (อยุธยา)" },
+    { idn: "15", name: "อ่างทอง" },
+    { idn: "16", name: "ลบบุรี" },
+    { idn: "17", name: "สิงห์บุรี" },
+    { idn: "18", name: "ชัยนาท" },
+    { idn: "19", name: "สระบุรี" },
+    { idn: "21", name: "ระยอง" },
+  ];
+  const [selectedProvinceIdn, setSelectedProvinceIdn] = useState<string>("14");
+  const handleProvinceChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setSelectedProvinceIdn(event.target.value);
     console.log(event.target.value);
   };
-
 
   useEffect(() => {
     const fetchFloodData = async () => {
       try {
         setFloodData([]);
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=&offset=0&pv_idn="+selectedProvinceIdn,
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=&offset=0&pv_idn=" +
+            selectedProvinceIdn,
           {
             headers: {
               accept: "application/json",
@@ -107,9 +96,9 @@ const handleProvinceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     fetchFloodData();
   }, [selectedProvinceIdn]);
 
-
   //   if (error) return <p style={{ color: "red" }}>{error}</p>;
   //   if (!floodData) return <p>Loading...</p>;
+  
   //html
   return (
     <div style={{ padding: "20px" }}>
@@ -146,13 +135,19 @@ const handleProvinceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
             วันที่ตรวจพบ:{" "}
             {new Date(f.properties._createdAt).toLocaleString("th-TH")}
           </p>
-<p>
-  <a href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`} target="_blank" rel="noopener noreferrer">
-    ดูบนแผนที่ Google Maps
-  </a> 
-</p>        </div>
+          <p>
+            <a
+              href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ดูบนแผนที่ Google Maps
+            </a>
+          </p>
+        </div>
       ))}
     </div>
   );
-  
 }
+
+export default FloodPage;
