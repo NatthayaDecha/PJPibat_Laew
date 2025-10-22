@@ -1,0 +1,10 @@
+.contentPage {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgb(201, 215, 233);
+    width: 450px;
+    height: 250px;
+    
+}

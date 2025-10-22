@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../css/FloodPage.css";
 
 interface FloodFeature {
   id: string;
@@ -53,13 +54,77 @@ function FloodPage() {
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
   const provinces = [
+    // { idn: "10", name: "กทม" },
+    // { idn: "11", name: "กทม" },
+    // { idn: "12", name: "กทม" },
+    // { idn: "13", name: "กทม" },
     { idn: "14", name: "พระนครศรีอยุธยา (อยุธยา)" },
     { idn: "15", name: "อ่างทอง" },
-    { idn: "16", name: "ลบบุรี" },
+    { idn: "16", name: "ลพบุรี" },
     { idn: "17", name: "สิงห์บุรี" },
     { idn: "18", name: "ชัยนาท" },
     { idn: "19", name: "สระบุรี" },
+    { idn: "20", name: "Terst" },
     { idn: "21", name: "ระยอง" },
+    { idn: "24", name: "ฉะเชิงเทรา" },
+    { idn: "25", name: "ปราจีนบุรี" },
+    { idn: "30", name: "นครราชสีมา" },
+    { idn: "31", name: "บุรีรัมย์" },
+    { idn: "32", name: "สุรินทร์" },
+    { idn: "33", name: "ศรีสระเกษ" },
+    { idn: "34", name: "อุบลราชธานี" },
+    { idn: "35", name: "ยโสธร" },
+    { idn: "36", name: "ชัยภูมิ" },
+    { idn: "37", name: "อำนาจเจริญ" },
+    { idn: "38", name: "บึงกาฬ" },
+    { idn: "39", name: "หนองบัวลำภู" },
+    { idn: "40", name: "ขอนแก่น" },
+    { idn: "41", name: "อุดรธานี" },
+    // { idn: "42", name: "เลย" },
+    { idn: "43", name: "หนองคาย" },
+    { idn: "44", name: "มหาสารคาม" },
+    { idn: "45", name: "ร้อยเอ็ด" },
+    { idn: "46", name: "กาฬสินธุ์" },
+    { idn: "47", name: "สกลนคร" },
+    { idn: "48", name: "นครพนม" },
+    // { idn: "49", name: "มุกดาหาร" },
+    // { idn: "50", name: "เชียงใหม่" },
+    // { idn: "51", name: "ลำพูน" },
+    // { idn: "52", name: "ลำปาง" },
+    { idn: "53", name: "อุตรดิถ์" },
+    // { idn: "54", name: "Terst" },
+    // { idn: "55", name: "Terst" },
+    { idn: "56", name: "พะเยา" },
+    // { idn: "57", name: "Terst" },
+    { idn: "58", name: "แม่ฮ่องสอน" },
+    // { idn: "59", name: "Terst" },
+    // { idn: "70", name: "Terst" },
+    { idn: "71", name: "Terst" },
+    { idn: "72", name: "สุพรรณบุรีt" },
+    { idn: "73", name: "นครปฐม" },
+    // { idn: "74", name: "Terst" },
+    // { idn: "75", name: "Terst" },
+    // { idn: "76", name: "Terst" },
+    // { idn: "77", name: "Terst" },
+    // { idn: "78", name: "Terst" },
+    // { idn: "79", name: "Terst" },
+    // { idn: "80", name: "Terst" },
+    // { idn: "81", name: "Terst" },
+    // { idn: "82", name: "Terst" },
+    // { idn: "83", name: "Terst" },
+    // { idn: "84", name: "Terst" },
+    // { idn: "85", name: "Terst" },
+    // { idn: "86", name: "Terst" },
+    // { idn: "87", name: "Terst" },
+    // { idn: "88", name: "Terst" },
+    // { idn: "89", name: "Terst" },
+    // { idn: "90", name: "Terst" },
+    // { idn: "91", name: "Terst" },
+    // { idn: "92", name: "Terst" },
+    // { idn: "93", name: "Terst" },
+    // { idn: "94", name: "Terst" },
+    // { idn: "95", name: "Terst" },
+    // { idn: "96", name: "Terst" },
   ];
   const [selectedProvinceIdn, setSelectedProvinceIdn] = useState<string>("14");
   const handleProvinceChange = (
@@ -116,15 +181,7 @@ function FloodPage() {
       </select>
 
       {floodData.map((f, i) => (
-        <div
-          key={f.id}
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            marginBottom: "10px",
-            padding: "10px",
-          }}
-        >
+        <div className="contentPage"  key={f.id}>
           <h4>พื้นที่ที่ {i + 1}</h4>
           <p>จังหวัด: {f.properties.pv_tn}</p>
           <p>อำเภอ: {f.properties.ap_tn}</p>

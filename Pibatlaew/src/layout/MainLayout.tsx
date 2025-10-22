@@ -16,10 +16,10 @@ function MainLayout({ children }: LayoutProps) {
           <a href="#">About</a>
          </nav>
       </header>
-      <main className="contenr">{children}</main>
-      <footer className="footer">
+      <main className="content">{children}</main>
+      {/* <footer className="footer">
           <p>© 2025 Pibat Laew Project</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
