@@ -11,8 +11,8 @@ function MainLayout({ children }: LayoutProps) {
       <header className="header">
          <h1>Pibat Laew E Dok</h1>
          <nav>
-          <a href="#">Home</a>
-          <a href="#">Flood</a>
+          <a href="/Pibatlaew/src/page/FloodPage.tsx">FoolPage</a>
+          <a href="/Pibatlaew/src/page/Kuy.tsx">เเนะนำอวัยะวะ</a>
           <a href="#">About</a>
          </nav>
       </header>
