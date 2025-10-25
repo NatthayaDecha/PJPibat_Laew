@@ -14,6 +14,9 @@ function MainLayout({ children }: LayoutProps) {
           <a href="/Pibatlaew/src/page/FloodPage.tsx">ข้อควรระวัง</a>
           <a href="/Pibatlaew/src/page/Kuy.tsx">วิธีรับมือ</a>
           <a href="#">Help?</a>
+          <a href="/Pibatlaew/src/page/FloodPage.tsx">ข้อควรระวัง</a>
+          <a href="/Pibatlaew/src/page/Kuy.tsx">วิธีรับมือ</a>
+          <a href="#">Help?</a>
          </nav>
       </header>
         
