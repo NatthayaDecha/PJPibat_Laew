@@ -9,11 +9,11 @@ function MainLayout({ children }: LayoutProps) {
   return (
     <div className="containerXL">
       <header className="header">
-         <h1>Pibat Laew E Dok</h1>
+         <h1>Pibat Laew </h1>
          <nav>
-          <a href="#">Home</a>
-          <a href="#">Flood</a>
-          <a href="#">About</a>
+          <a href="/Pibatlaew/src/page/FloodPage.tsx">ข้อควรระวัง</a>
+          <a href="/Pibatlaew/src/page/Kuy.tsx">วิธีรับมือ</a>
+          <a href="#">Help?</a>
          </nav>
       </header>
       <main className="content">{children}</main>
