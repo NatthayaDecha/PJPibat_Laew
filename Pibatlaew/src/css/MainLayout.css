@@ -43,10 +43,15 @@ body {
   display: block;
     
 }
+.sidebar{
+  width: 200px;
+  height: 100vmax;
+  background-color: rgb(87, 24, 183);
+}
 
-.footer {
+/* .footer {
   background: #023e8a;
   color: white;
   text-align: center;
   padding: 0.5rem;
-}
+} */

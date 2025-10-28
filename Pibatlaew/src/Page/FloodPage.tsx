@@ -198,9 +198,9 @@ function FloodPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              ดูบนแผนที่ Google Maps
+              ดูบนแผนที่ Google Maps  
             </a>
-          </p>
+          </p>effff
         </div>
       ))}
     </div>
