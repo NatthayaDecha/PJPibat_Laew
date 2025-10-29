@@ -11,7 +11,7 @@ function MainLayout({ children }: LayoutProps) {
     <div className="containerXL">
       <header className="header">
         {/* <h1>Pibat Laew </h1> */}
-        <img src="/Logo.png" alt="Logo" className="logo" />
+        <img src="/Logona.png" alt="Logo" className="logo" />
         <nav>
           <a href="#">ข้อควรระวัง</a>
           <a href="#">วิธีรับมือ</a>
