@@ -166,12 +166,12 @@ function FloodPage() {
   
   //html
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="content">
       <select
         id="province-select"
         value={selectedProvinceIdn} // กำหนดค่าที่ถูกเลือกจาก state
         onChange={handleProvinceChange} // เรียกฟังก์ชันเมื่อมีการเปลี่ยนแปลง
-        style={{ padding: "10px", marginBottom: "20px", borderRadius: "5px" }}
+        // style={{ padding: "10px", marginBottom: "20px", borderRadius: "5px" }}
       >
         {provinces.map((p) => (
           <option key={p.idn} value={p.idn}>

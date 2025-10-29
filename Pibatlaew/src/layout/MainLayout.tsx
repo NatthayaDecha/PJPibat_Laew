@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/MainLayout.css";
 
+
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -9,8 +10,8 @@ function MainLayout({ children }: LayoutProps) {
   return (
     <div className="containerXL">
       <header className="header">
-        <h1>Pibat Laew </h1>
-        {/* <img src="/Pibatlaew/public/Logo.png" alt="Logo" className="logo" /> */}
+        {/* <h1>Pibat Laew </h1> */}
+        <img src="/Logo.png" alt="Logo" className="logo" />
         <nav>
           <a href="#">ข้อควรระวัง</a>
           <a href="#">วิธีรับมือ</a>
@@ -18,10 +19,10 @@ function MainLayout({ children }: LayoutProps) {
         </nav>
       </header>
       <div className="sidebar">
-        <nav>
-          <a href="#">ข้อควรระวัง</a>
-          <a href="#">วิธีรับมือ</a>
-          <a href="#">Help?</a>
+        <nav className="siddertext">
+          <a href="#">น้ำท่วม</a>
+          <a href="#">ภัยเเล้ง</a>
+          <a href="#">ไฟป่า</a>
         </nav>
       </div>
       <main className="content">{children}</main>
