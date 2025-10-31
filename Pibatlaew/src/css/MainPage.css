@@ -1,0 +1,26 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+}
+
+.box1{
+    width: 20vw;
+}
+
+.box2{
+    width: 60vw;
+}
+
+.box3{
+    width: 20vw;
+}
+.leftbar{
+    height: 100vh;
+    width: 5vw;
+    background-color: brown;
+}
+
+.content{
+    width: 100vw;
+    height: 100vh;
+}
