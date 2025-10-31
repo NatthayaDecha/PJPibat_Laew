@@ -15,7 +15,6 @@ function MainPage() {
           <div className="flex/ flex-1 items-center justify-center h-screen">
             {/* <FloodPage/> */}
           </div>
-          
         </div>
       </div>
     </>
