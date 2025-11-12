@@ -53,11 +53,12 @@ function FloodPage() {
   //ตัวแปร
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
-  const provinces = [
-    // { idn: "10", name: "กทม" },
+  <div></div>
+  const provinces = [ 
+    { idn: "10", name: "กรุงเทพมหานคร" },
     // { idn: "11", name: "กทม" },
-    // { idn: "12", name: "กทม" },
-    // { idn: "13", name: "กทม" },
+    { idn: "12", name: "นนทบุรี" },
+    { idn: "13", name: "ปทุมธานี" },
     { idn: "14", name: "พระนครศรีอยุธยา (อยุธยา)" },
     { idn: "15", name: "อ่างทอง" },
     { idn: "16", name: "ลพบุรี" },
@@ -99,8 +100,8 @@ function FloodPage() {
     { idn: "58", name: "แม่ฮ่องสอน" },
     // { idn: "59", name: "Terst" },
     // { idn: "70", name: "Terst" },
-    { idn: "71", name: "Terst" },
-    { idn: "72", name: "สุพรรณบุรีt" },
+    // { idn: "71", name: "Terst" },
+    { idn: "72", name: "สุพรรณบุรี" },
     { idn: "73", name: "นครปฐม" },
     // { idn: "74", name: "Terst" },
     // { idn: "75", name: "Terst" },
@@ -118,10 +119,10 @@ function FloodPage() {
     // { idn: "87", name: "Terst" },
     // { idn: "88", name: "Terst" },
     // { idn: "89", name: "Terst" },
-    // { idn: "90", name: "Terst" },
+    { idn: "90", name: "สงขลา" },
     // { idn: "91", name: "Terst" },
     // { idn: "92", name: "Terst" },
-    // { idn: "93", name: "Terst" },
+    { idn: "93", name: "พัทลุง" },
     // { idn: "94", name: "Terst" },
     // { idn: "95", name: "Terst" },
     // { idn: "96", name: "Terst" },

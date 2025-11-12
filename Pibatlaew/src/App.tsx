@@ -1,8 +1,7 @@
 import React from "react";
-// import FloodPage from "./page/FloodPage";
+import FloodPage from "./page/FloodPage";
 // import MainLayout from "./layout/MainLayout";
 // import axios from "axios";
-// import MainLayout from "./layout/MainLayout";
 import MainPage from "./layout/MainPage";
 
 

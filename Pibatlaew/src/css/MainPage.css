@@ -2,8 +2,8 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
+   /* overflow-x: hidden;
+   overflow-y: hidden;   */
 }
 .navbar{
     width: 100vw;
@@ -39,7 +39,7 @@ html, body {
 }
 .leftbar{
     height: 100vh;
-    width: 12vw;
+    width: 15vw;
     padding: 30px 20px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(239, 239, 239);
@@ -47,14 +47,22 @@ html, body {
 }
 .leftbar  ul li{
     /* border:1px solid red; */
-    padding: 10px 10px;
-    margin: 20px 10px 10px 20px; 
+    padding: 10px;
+    margin: 20px ;
+    width: 10vw; 
     border-radius: 16px;
     background-color:#dbf0ff ;
 }
 
+.leftbar  ul li a{
+    /* border:1px solid red; */
+    padding: 5px;
+     margin: 30px ;
+    text-align: center;
+   
+}
 .content{
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
 }

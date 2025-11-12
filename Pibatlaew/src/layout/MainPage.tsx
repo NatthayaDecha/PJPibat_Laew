@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/MainPage.css";
-// import FloodPage from "../page/FloodPage";
+import FloodPage from "../page/FloodPage";
 function MainPage() {
   return (
     <>
@@ -29,7 +29,7 @@ function MainPage() {
         </div>
         <div className="basis-3/4">
           <div className="flex/ flex-1 items-center justify-center h-screen">
-            {/* <FloodPage/> */}
+            <FloodPage/>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-/* .contentPage {
+.contentPage {
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -8,12 +8,11 @@
     height: 250px;
     align-items: center;
     
-} */
+}
 
 
 
-
-/* .contentPage {
+.contentPage {
   background-color: #dbe7ff;
   border-radius: 10px;
   padding: 1.5rem;
@@ -32,4 +31,4 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 1rem;
-} */ 
+} 
