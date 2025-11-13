@@ -201,7 +201,7 @@ function FloodPage() {
             >
               ดูบนแผนที่ Google Maps  
             </a>
-          </p>effff
+          </p>
         </div>
       ))}
     </div>
