@@ -10,15 +10,24 @@ interface FloodFeature {
     coordinates: number[][][][];
   };
   properties: {
-    _area: number;
-    _createdAt: string;
-    _createdBy: string;
+    _createAt:string;
+    _createdBy:string;
+    _id:string;
+    _updatedAt:string;
+    _updatedBy:string;
+    _acq_date:string;
+    _amphoe:string
+    _ap_en:string;
+    _ap_tn:string;
+    // _area: number;
+    // _createdAt: string;
+    // _createdBy: string;
     // _id: string;
     // _updatedAt: string;
     // _updatedBy: string;
-    ap_en: string;
-    ap_idn: number;
-    ap_tn: string;
+    // ap_en: string;
+    // ap_idn: number;
+    // ap_tn: string;
     // building: number;
     // building_2: number;
     // cassava_area: number | null;
@@ -33,19 +42,19 @@ interface FloodFeature {
     // mongo_id: string;
     // population: number;
     // population_2: number;
-    pv_en: string;
-    pv_idn: number;
-    pv_tn: string;
+    // pv_en: string;
+    // pv_idn: number;
+    // pv_tn: string;
     // re_royin: string;
-    region: string;
+    // region: string;
     // rice_area: number;
     // rice_area_2: number;
     // school: number;
     // sugarcane_area: number | null;
     // sugarcane_area_2: number | null;
-    tb_en: string;
-    tb_idn: number;
-    tb_tn: string;
+    // tb_en: string;
+    // tb_idn: number;
+    // tb_tn: string;
   };
 }
 
