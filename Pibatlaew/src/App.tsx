@@ -4,7 +4,9 @@ import FloodPage from "./Page/FloodPage";
 // import axios from "axios";
 // import MainPage from "./layout/MainPage";
 import FloodPage2 from "./Page/FloodPage2";
-
+import  FirePage30day from "./Page/FirePage30day";
+import  FirePage7day from "./Page/FirePage7day";
+import FirePage1day from "./Page/FirePage1day";
 function App() {
   return ( 
     <div className="App">
@@ -12,7 +14,9 @@ function App() {
     
     </MainPage> */}
       {/* <FloodPage2/> */}
-    
+       {/* < FirePage30day/> */}
+       {/* < FirePage7day/> */}
+       <FirePage1day/>
       {/* <FloodPage/> */}
     </div>
   );

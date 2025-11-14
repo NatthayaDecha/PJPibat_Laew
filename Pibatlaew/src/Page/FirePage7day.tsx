@@ -1,83 +1,42 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../css/FloodPage.css";
 
-interface FloodFeature {
+interface FireFeature {
   id: string;
   type: string;
   geometry: {
-    tyoe: string;
+    type: string;
     coordinates: number[][][][];
   };
   properties: {
-    _createdAt:string,
-    _createdBy:string,
-    _id: string,
-    _updatedAt:string,
-    _updatedBy:string,
-    acq_date: string,
-    acq_time: string,
-    amphoe:string,
-    ap_en: string,
-    ap_tn: string,
-    changwat:string,
-    latitude: number,
-    longitude: number,
-    pv_en: string,
-    pv_idn:string,
-    pv_tn:  string,
-    tambol: string,
-    tb_en: string,
-    tb_tn: string,
-    th_date: string,
-    th_time: number,
-    _village:string,
-    // _area: number;
-    // _createdAt: string;
-    // _createdBy: string;
-    // _id: string;
-    // _updatedAt: string;
-    // _updatedBy: string;
-    // ap_en: string;
-    // ap_idn: number;
-    // ap_tn: string;
-    // building: number;
-    // building_2: number;
-    // cassava_area: number | null;
-    // cassava_area_2: number | null;
-    // f_area: number;
-    // file_name: string;
-    // h3_address: string;
-    // hospital: number;
-    // length_road: number;
-    // maize_area: number | null;
-    // maize_area_2: number | null;
-    // mongo_id: string;
-    // population: number;
-    // population_2: number;
-    // pv_en: string;
-    // pv_idn: number;
-    // pv_tn: string;
-    // re_royin: string;
-    // region: string;
-    // rice_area: number;
-    // rice_area_2: number;
-    // school: number;
-    // sugarcane_area: number | null;
-    // sugarcane_area_2: number | null;
-    // tb_en: string;
-    // tb_idn: number;
-    // tb_tn: string;
+    _id: string;
+    bright_ti4: number;
+    ap_en: string;
+    ap_tn: string;
+    latitude: number;
+    longitude: number;
+    pv_code: number;
+    pv_en: string;
+    pv_idn: string;
+    pv_tn: string;
+    re_royin: string;
+    tambol: string;
+    tb_en: string;
+    tb_tn: string;
+    th_date: string; //วันไทยไม่ใช่utc
+    th_time: number; //เวลาไทยไม่ใช่utc
+    village: string;
+    linkgmap: string;
   };
 }
 
-function FloodPage() {
+function FirePage7day() {
   //ตัวแปร
-  const [floodData, setFloodData] = useState<FloodFeature[]>([]);
+  const [floodData, setFireData] = useState<FireFeature[]>([]);
   const [error, setError] = useState("");
-  const provinces = [ 
+  const provinces = [
     { idn: "10", name: "กรุงเทพมหานคร" },
-    // { idn: "11", name: "กทม" },
+    { idn: "11", name: "กทม" },
     { idn: "12", name: "นนทบุรี" },
     { idn: "13", name: "ปทุมธานี" },
     { idn: "14", name: "พระนครศรีอยุธยา (อยุธยา)" },
@@ -102,51 +61,51 @@ function FloodPage() {
     { idn: "39", name: "หนองบัวลำภู" },
     { idn: "40", name: "ขอนแก่น" },
     { idn: "41", name: "อุดรธานี" },
-    // { idn: "42", name: "เลย" },
+    { idn: "42", name: "เลย" },
     { idn: "43", name: "หนองคาย" },
     { idn: "44", name: "มหาสารคาม" },
     { idn: "45", name: "ร้อยเอ็ด" },
     { idn: "46", name: "กาฬสินธุ์" },
     { idn: "47", name: "สกลนคร" },
     { idn: "48", name: "นครพนม" },
-    // { idn: "49", name: "มุกดาหาร" },
-    // { idn: "50", name: "เชียงใหม่" },
-    // { idn: "51", name: "ลำพูน" },
-    // { idn: "52", name: "ลำปาง" },
+    { idn: "49", name: "มุกดาหาร" },
+    { idn: "50", name: "เชียงใหม่" },
+    { idn: "51", name: "ลำพูน" },
+    { idn: "52", name: "ลำปาง" },
     { idn: "53", name: "อุตรดิถ์" },
-    // { idn: "54", name: "Terst" },
-    // { idn: "55", name: "Terst" },
+    { idn: "54", name: "Terst" },
+    { idn: "55", name: "Terst" },
     { idn: "56", name: "พะเยา" },
-    // { idn: "57", name: "Terst" },
+    { idn: "57", name: "Terst" },
     { idn: "58", name: "แม่ฮ่องสอน" },
-    // { idn: "59", name: "Terst" },
-    // { idn: "70", name: "Terst" },
-    // { idn: "71", name: "Terst" },
+    { idn: "59", name: "Terst" },
+    { idn: "70", name: "Terst" },
+    { idn: "71", name: "Terst" },
     { idn: "72", name: "สุพรรณบุรี" },
     { idn: "73", name: "นครปฐม" },
-    // { idn: "74", name: "Terst" },
-    // { idn: "75", name: "Terst" },
-    // { idn: "76", name: "Terst" },
-    // { idn: "77", name: "Terst" },
-    // { idn: "78", name: "Terst" },
-    // { idn: "79", name: "Terst" },
-    // { idn: "80", name: "Terst" },
-    // { idn: "81", name: "Terst" },
-    // { idn: "82", name: "Terst" },
-    // { idn: "83", name: "Terst" },
-    // { idn: "84", name: "Terst" },
-    // { idn: "85", name: "Terst" },
-    // { idn: "86", name: "Terst" },
-    // { idn: "87", name: "Terst" },
-    // { idn: "88", name: "Terst" },
-    // { idn: "89", name: "Terst" },
+    { idn: "74", name: "Terst" },
+    { idn: "75", name: "Terst" },
+    { idn: "76", name: "Terst" },
+    { idn: "77", name: "Terst" },
+    { idn: "78", name: "Terst" },
+    { idn: "79", name: "Terst" },
+    { idn: "80", name: "Terst" },
+    { idn: "81", name: "Terst" },
+    { idn: "82", name: "Terst" },
+    { idn: "83", name: "Terst" },
+    { idn: "84", name: "Terst" },
+    { idn: "85", name: "Terst" },
+    { idn: "86", name: "Terst" },
+    { idn: "87", name: "Terst" },
+    { idn: "88", name: "Terst" },
+    { idn: "89", name: "Terst" },
     { idn: "90", name: "สงขลา" },
-    // { idn: "91", name: "Terst" },
-    // { idn: "92", name: "Terst" },
+    { idn: "91", name: "Terst" },
+    { idn: "92", name: "Terst" },
     { idn: "93", name: "พัทลุง" },
-    // { idn: "94", name: "Terst" },
-    // { idn: "95", name: "Terst" },
-    // { idn: "96", name: "Terst" },
+    { idn: "94", name: "Terst" },
+    { idn: "95", name: "Terst" },
+    { idn: "96", name: "Terst" },
   ];
   const [selectedProvinceIdn, setSelectedProvinceIdn] = useState<string>("14");
   const handleProvinceChange = (
@@ -155,13 +114,21 @@ function FloodPage() {
     setSelectedProvinceIdn(event.target.value);
     console.log(event.target.value);
   };
+  const kelvinToCelsius = (k: number) => (k - 273.15).toFixed(1);
+  const heatLevel = (k: number): string => {
+    if (k >= 280 && k <= 290) return "ปกติ (อุณหภูมิพื้นดินทั่วไป)";
+    if (k >= 300 && k <= 310) return "เริ่มมีความร้อนสูง";
+    if (k > 310 && k <= 320) return "ร้อนมาก (อาจเป็นการเผา)";
+    if (k > 320) return "ร้อนผิดปกติ (มีโอกาสเป็นไฟจริง)";
+    return "ข้อมูลไม่อยู่ในช่วงมาตรฐาน";
+  };
 
   useEffect(() => {
-    const fetchFloodData = async () => {
+    const fetchFireData = async () => {
       try {
-        setFloodData([]);
+        setFireData([]);
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/30days?offset=0&pv_idn=" +
             selectedProvinceIdn,
           {
             headers: {
@@ -172,7 +139,7 @@ function FloodPage() {
           }
         );
         // setFloodData(response.data);
-        setFloodData(response.data.features);
+        setFireData(response.data.features);
         console.log(response.data.features);
       } catch (err) {
         console.error(err);
@@ -180,12 +147,12 @@ function FloodPage() {
       }
     };
 
-    fetchFloodData();
+    fetchFireData();
   }, [selectedProvinceIdn]);
 
-  //   if (error) return <p style={{ color: "red" }}>{error}</p>;
-  //   if (!floodData) return <p>Loading...</p>;
-  
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (!floodData) return <p>Loading...</p>;
+
   //html
   return (
     <div className="content">
@@ -203,24 +170,25 @@ function FloodPage() {
       </select>
 
       {floodData.map((f, i) => (
-        <div className="contentPage"  key={f.id}>
+        <div className="contentPage" key={f.id}>
           <h4>พื้นที่ที่ {i + 1}</h4>
           <p>จังหวัด: {f.properties.pv_tn}</p>
           <p>อำเภอ: {f.properties.ap_tn}</p>
           <p>ตำบล: {f.properties.tb_tn}</p>
-          <p>หมู่บ้าน: {f.properties._village}</p>
-          <p>พื้นที่น้ำท่วม (ตร.ม.): {f.properties._area.toFixed(2)}</p>
+          <p>หมู่บ้าน: {f.properties.village}</p>
+          <p>อุณหภูมิ: {kelvinToCelsius(f.properties.bright_ti4)}°C</p>
+          <p>สภาพอากาศ: {heatLevel(f.properties.bright_ti4)}</p>
           <p>
             วันที่ตรวจพบ:{" "}
-            {new Date(f.properties._createdAt).toLocaleString("th-TH")}
+            {new Date(f.properties.th_date).toLocaleDateString("th-TH", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </p>
           <p>
-            <a
-              href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ดูบนแผนที่ Google Maps  
+            <a href={f.properties.linkgmap} target="_blank" rel="noopener noreferrer">
+              ดูบนแผนที่ Google Maps
             </a>
           </p>
         </div>
@@ -229,4 +197,4 @@ function FloodPage() {
   );
 }
 
-export default FloodPage;
+export default FirePage7day;
