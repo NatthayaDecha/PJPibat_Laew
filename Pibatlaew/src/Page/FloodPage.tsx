@@ -186,6 +186,7 @@ function FloodPage() {
           <p>จังหวัด: {f.properties.pv_tn}</p>
           <p>อำเภอ: {f.properties.ap_tn}</p>
           <p>ตำบล: {f.properties.tb_tn}</p>
+           <p>ตำบล: {f.properties.tb_en}</p>
           <p>ภูมิภาค: {f.properties.region}</p>
           <p>พื้นที่น้ำท่วม (ตร.ม.): {f.properties._area.toFixed(2)}</p>
           <p>

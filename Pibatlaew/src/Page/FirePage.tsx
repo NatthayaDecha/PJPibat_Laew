@@ -10,15 +10,28 @@ interface FloodFeature {
     coordinates: number[][][][];
   };
   properties: {
-    _createAt:string;
-    _createdBy:string;
-    _id:string;
-    _updatedAt:string;
-    _updatedBy:string;
-    _acq_date:string;
-    _amphoe:string
-    _ap_en:string;
-    _ap_tn:string;
+    _createdAt:string,
+    _createdBy:string,
+    _id: string,
+    _updatedAt:string,
+    _updatedBy:string,
+    acq_date: string,
+    acq_time: string,
+    amphoe:string,
+    ap_en: string,
+    ap_tn: string,
+    changwat:string,
+    latitude: number,
+    longitude: number,
+    pv_en: string,
+    pv_idn:string,
+    pv_tn:  string,
+    tambol: string,
+    tb_en: string,
+    tb_tn: string,
+    th_date: string,
+    th_time: number,
+    _village:string,
     // _area: number;
     // _createdAt: string;
     // _createdBy: string;
@@ -195,7 +208,7 @@ function FloodPage() {
           <p>จังหวัด: {f.properties.pv_tn}</p>
           <p>อำเภอ: {f.properties.ap_tn}</p>
           <p>ตำบล: {f.properties.tb_tn}</p>
-          <p>ภูมิภาค: {f.properties.region}</p>
+          <p>หมู่บ้าน: {f.properties._village}</p>
           <p>พื้นที่น้ำท่วม (ตร.ม.): {f.properties._area.toFixed(2)}</p>
           <p>
             วันที่ตรวจพบ:{" "}
