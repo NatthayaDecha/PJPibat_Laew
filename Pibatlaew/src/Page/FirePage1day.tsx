@@ -32,7 +32,7 @@ interface FireFeature {
 
 function FirePage1day() {
   //ตัวแปร
-  const [floodData, setFireData] = useState<FireFeature[]>([]);
+  const [fireData, setFireData] = useState<FireFeature[]>([]);
   const [error, setError] = useState("");
   const provinces = [
     { idn: "10", name: "กรุงเทพมหานคร" },
@@ -151,7 +151,7 @@ function FirePage1day() {
   }, [selectedProvinceIdn]);
 
   if (error) return <p style={{ color: "red" }}>{error}</p>;
-  if (!floodData) return <p>Loading...</p>;
+  if (!fireData) return <p>Loading...</p>;
 
   //html
   return (
@@ -169,13 +169,13 @@ function FirePage1day() {
         ))}
       </select>
       {/* บอกว่าเหตถหาร์ยังไม่เกิดขึ้น */}
-      {floodData.length === 0 ? (
+      {fireData.length === 0 ? (
         <p style={{ color: "gray", marginTop: "20px" }}>
           ยังไม่ได้มีเหตุการณ์ในจังหวัดนี้
         </p>
       ) : (
         /* บอกว่าถ้าเกิดเหตุการณ์ข้อความจะหายไปเองเพาราะว่า ใช้:(..) */
-        floodData.map((f, i) => (
+        fireData.map((f, i) => (
           <div className="contentPage" key={f.id}>
             <h4>พื้นที่ที่ {i + 1}</h4>
             <p>จังหวัด: {f.properties.pv_tn}</p>

@@ -9,15 +9,17 @@ import  FirePage7day from "./Page/FirePage7day";
 import FirePage1day from "./Page/FirePage1day";
 function App() {
   return ( 
+    
     <div className="App">
     {/* <MainPage>
     
     </MainPage> */}
       {/* <FloodPage2/> */}
        {/* < FirePage30day/> */}
-       {/* < FirePage7day/> */}
-       <FirePage1day/>
+       {/* <FirePage1day/> */}
       {/* <FloodPage/> */}
+   
+
     </div>
   );
 }
