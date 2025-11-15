@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/MainPage.css";
-import FloodPage from "../page/FloodPage";
+// import FloodPage from "../page/FloodPage";
 function MainPage() {
   return (
     <>

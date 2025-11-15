@@ -13,46 +13,48 @@ interface FloodFeature {
     _area: number;
     _createdAt: string;
     _createdBy: string;
-    // _id: string;
-    // _updatedAt: string;
-    // _updatedBy: string;
+    _id: string;
+    _updatedAt: string;
+    _updatedBy: string;
     ap_en: string;
     ap_idn: number;
     ap_tn: string;
-    // building: number;
-    // building_2: number;
-    // cassava_area: number | null;
-    // cassava_area_2: number | null;
-    // f_area: number;
-    // file_name: string;
-    // h3_address: string;
-    // hospital: number;
-    // length_road: number;
-    // maize_area: number | null;
-    // maize_area_2: number | null;
-    // mongo_id: string;
-    // population: number;
-    // population_2: number;
+    building: number;
+    building_2: number;
+    cassava_area: number | null;
+    cassava_area_2: number | null;
+    f_area: number;
+    file_name: string;
+    h3_address: string;
+    hospital: number;
+    length_road: number;
+    maize_area: number | null;
+    maize_area_2: number | null;
+    mongo_id: string;
+    population: number;
+    population_2: number;
     pv_en: string;
     pv_idn: number;
     pv_tn: string;
-    // re_royin: string;
+    re_royin: string;
     region: string;
-    // rice_area: number;
-    // rice_area_2: number;
-    // school: number;
-    // sugarcane_area: number | null;
-    // sugarcane_area_2: number | null;
+    rice_area: number;
+    rice_area_2: number;
+    school: number;
+    sugarcane_area: number | null;
+    sugarcane_area_2: number | null;
     tb_en: string;
     tb_idn: number;
     tb_tn: string;
+    
   };
 }
 
-function FloodPage() {
+function FloodPage2() {
   //ตัวแปร
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
+  <div></div>
   const provinces = [ 
     { idn: "10", name: "กรุงเทพมหานคร" },
     // { idn: "11", name: "กทม" },
@@ -139,7 +141,7 @@ function FloodPage() {
       try {
         setFloodData([]);
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/7days?limit=1&offset=0" +
             selectedProvinceIdn,
           {
             headers: {
@@ -186,14 +188,16 @@ function FloodPage() {
           <p>จังหวัด: {f.properties.pv_tn}</p>
           <p>อำเภอ: {f.properties.ap_tn}</p>
           <p>ตำบล: {f.properties.tb_tn}</p>
-           <p>ตำบล: {f.properties.tb_en}</p>
           <p>ภูมิภาค: {f.properties.region}</p>
           <p>พื้นที่น้ำท่วม (ตร.ม.): {f.properties._area.toFixed(2)}</p>
           <p>
             วันที่ตรวจพบ:{" "}
             {new Date(f.properties._createdAt).toLocaleString("th-TH")}
           </p>
-          <p>
+          {/* <p>เวลาอัพเดท {""}
+            {new Date (f.properties._updatedAt).toLocaleTimeString("th-TH")}
+          </p> */}
+          {/* <p>
             <a
               href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`}
               target="_blank"
@@ -201,11 +205,11 @@ function FloodPage() {
             >
               ดูบนแผนที่ Google Maps  
             </a>
-          </p>
+          </p> */}
         </div>
       ))}
     </div>
   );
 }
 
-export default FloodPage;
+export default FloodPage2;
