@@ -49,7 +49,7 @@ interface FloodFeature {
   };
 }
 
-function FloodPage() {
+function FloodPage30day() {
   //ตัวแปร
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
@@ -139,8 +139,8 @@ function FloodPage() {
       try {
         setFloodData([]);
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=&offset=0&pv_idn=" +
-            selectedProvinceIdn,
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=5000&offset=0&pv_idn=" 
+          + selectedProvinceIdn,
           {
             headers: {
               accept: "application/json",
@@ -208,4 +208,4 @@ function FloodPage() {
   );
 }
 
-export default FloodPage;
+export default FloodPage30day;
