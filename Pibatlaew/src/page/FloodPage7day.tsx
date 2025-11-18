@@ -139,7 +139,7 @@ function FloodPage7day() {
       try {
         setFloodData([]);
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=5000&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/7days?limit=2000&offset=0&pv_idn=" +
             selectedProvinceIdn,  // เลือกจากจังหวัด
           {
             headers: {

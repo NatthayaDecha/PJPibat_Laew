@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/MainPage.css";
-// import FloodPage from "../page/FloodPage";
+import FloodPage30day from "../page/FloodPage30day";
 function MainPage() {
   return (
     <>
@@ -22,14 +22,13 @@ function MainPage() {
             <ul>
                   <li><a href="#">น้ำท่วม</a></li>
                   <li><a href="#">ไฟป่า</a></li>
-                  <li><a href="#">ภัยเเล้ง</a></li>
                   <li><a href="#">เตือนภัย</a></li>
                   <li><a href="#">เเนะนำ</a></li>
             </ul>
         </div>
         <div className="basis-3/4">
           <div className="flex/ flex-1 items-center justify-center h-screen">
-            <FloodPage/>
+           <FloodPage30day />
           </div>
         </div>
       </div>

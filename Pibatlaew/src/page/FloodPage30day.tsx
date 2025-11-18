@@ -53,7 +53,7 @@ function FloodPage30day() {
   //ตัวแปร
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
-  const provinces = [ 
+  const provinces = [
     { idn: "10", name: "กรุงเทพมหานคร" },
     // { idn: "11", name: "กทม" },
     { idn: "12", name: "นนทบุรี" },
@@ -139,8 +139,8 @@ function FloodPage30day() {
       try {
         setFloodData([]);
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=5000&offset=0&pv_idn=" 
-          + selectedProvinceIdn,
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=25&offset=0&pv_idn=" +
+            selectedProvinceIdn,
           {
             headers: {
               accept: "application/json",
@@ -163,7 +163,7 @@ function FloodPage30day() {
 
   //   if (error) return <p style={{ color: "red" }}>{error}</p>;
   //   if (!floodData) return <p>Loading...</p>;
-  
+
   //html
   return (
     <div className="content">
@@ -171,7 +171,6 @@ function FloodPage30day() {
         id="province-select"
         value={selectedProvinceIdn} // กำหนดค่าที่ถูกเลือกจาก state
         onChange={handleProvinceChange} // เรียกฟังก์ชันเมื่อมีการเปลี่ยนแปลง
-        // style={{ padding: "10px", marginBottom: "20px", borderRadius: "5px" }}
       >
         {provinces.map((p) => (
           <option key={p.idn} value={p.idn}>
@@ -180,30 +179,33 @@ function FloodPage30day() {
         ))}
       </select>
 
-      {floodData.map((f, i) => (
-        <div className="contentPage"  key={f.id}>
-          <h4>พื้นที่ที่ {i + 1}</h4>
-          <p>จังหวัด: {f.properties.pv_tn}</p>
-          <p>อำเภอ: {f.properties.ap_tn}</p>
-          <p>ตำบล: {f.properties.tb_tn}</p>
-           <p>ตำบล: {f.properties.tb_en}</p>
-          <p>ภูมิภาค: {f.properties.region}</p>
-          <p>พื้นที่น้ำท่วม (ตร.ม.): {f.properties._area.toFixed(2)}</p>
-          <p>
-            วันที่ตรวจพบ:{" "}
-            {new Date(f.properties._createdAt).toLocaleString("th-TH")}
-          </p>
-          <p>
-            <a
-              href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              ดูบนแผนที่ Google Maps  
-            </a>
-          </p>
-        </div>
-      ))}
+      {/* ตัวแม่ที่เอาไว้จัด 4 ช่อง */}
+      <div className="contentGrid">
+        {floodData.map((f, i) => (
+          <div className="contentPage" key={f.id}>
+            <h4>พื้นที่ที่ {i + 1}</h4>
+            <p>จังหวัด: {f.properties.pv_tn}</p>
+            <p>อำเภอ: {f.properties.ap_tn}</p>
+            <p>ตำบล: {f.properties.tb_tn}</p>
+            <p>ตำบล (อังกฤษ): {f.properties.tb_en}</p>
+            <p>ภูมิภาค: {f.properties.region}</p>
+            <p>พื้นที่น้ำท่วม (ตร.ม.): {f.properties._area.toFixed(2)}</p>
+            <p>
+              วันที่ตรวจพบ:{" "}
+              {new Date(f.properties._createdAt).toLocaleString("th-TH")}
+            </p>
+            <p>
+              <a
+                href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ดูบนแผนที่ Google Maps
+              </a>
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
