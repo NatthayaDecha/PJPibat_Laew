@@ -1,40 +1,59 @@
+// MainPage.tsx
 import React from "react";
+import { Link, Outlet } from "react-router-dom";
 import "../css/MainPage.css";
-import FloodPage30day from "../page/FloodPage30day";
+
 function MainPage() {
   return (
     <>
-      <div className="flex felx-col  navbar">
+      <div className="flex felx-col navbar">
         <div className="flex-1 box1 ">
-          <img src="/Logowed.png" alt="logo" width={"250px"}  />
+          {/* <img src="/Logowed.png" alt="logo" width={"250px"}  /> */}
         </div>
         <div className="flex-1 box2"></div>
         <div className="flex-1 box3 text-center">
-            <ul>
-                  <li><a href="#">การเเจ้งเตือน</a></li>
-                  <li><a href="#">วิธีรับมือ</a></li>
-                  <li><a href="#">เกี่ยวกับเรา</a></li>
-            </ul>
+          <ul>
+            <li>
+              <Link to="/">การเเจ้งเตือน</Link>
+            </li>
+            <li>
+              <Link to="/">วิธีรับมือ</Link>
+            </li>
+            <li>
+              <Link to="/">เกี่ยวกับเรา</Link>
+            </li>
+          </ul>
         </div>
       </div>
+
       <div className="content flex felx-col">
-        <div className="leftbar ">
-            <ul>
-                  <li><a href="#">น้ำท่วม</a></li>
-                  <li><a href="#">ไฟป่า</a></li>
-                  <li><a href="#">เตือนภัย</a></li>
-                  <li><a href="#">เเนะนำ</a></li>
-            </ul>
+        {/* เมนูด้านซ้าย */}
+        <div className="leftbar">
+          <ul>
+            <li>
+              <Link to="/flood30">น้ำท่วม</Link>
+            </li>
+            <li>
+              <Link to="/fire30">ไฟป่า</Link>
+            </li>
+            <li>
+              <Link to="/">เตือนภัย</Link>
+            </li>
+            <li>
+              <Link to="/">เเนะนำ</Link>
+            </li>
+          </ul>
         </div>
+
+        {/* พื้นที่แสดงหน้าแต่ละหน้า (FloodPage, FirePage) */}
         <div className="basis-3/4">
-          <div className="flex/ flex-1 items-center justify-center h-screen">
-           <FloodPage30day />
+          <div className="flex flex-1 items-start justify-center">
+            <Outlet /> {/* ตรงนี้แหละที่แต่ละ Route จะมาแสดง */}
           </div>
         </div>
       </div>
     </>
   );
 }
-export default MainPage;
 
-// basis-1/4
+export default MainPage;

@@ -2,9 +2,9 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;     /* กันสกอลบาร์แนวนอน */
+  width: 100%;/* height: 100%; */
+  overflow-x: hidden; /* กันสกอลบาร์แนวนอน */
+  background-color: #ffffff;
 }
 
 /* ===== NAVBAR ด้านบน ===== */
@@ -14,10 +14,10 @@ html, body {
   left: 0;
   right: 0;
   height: 90px;                 /* เผื่อความสูงให้โลโก้ + ปุ่ม */
-  background-color: #ffffff;
-  border-bottom: 1px solid rgb(239, 239, 239);
+  padding: 0 24px;
+  background-color: #0072BC;
+  /* border-bottom: 2px solid  #036aae; */
   z-index: 1000;
-  display: flex;
   align-items: center;          /* จัดให้อยู่กลางแนวตั้ง */
 }
 
@@ -39,7 +39,10 @@ html, body {
   margin: 0 16px;               /* เอา margin บน–ล่างออก เหลือแค่ซ้าย–ขวา */
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: #001b4d;
+  background-color:#004878;
+}
+.box3 ul li a{
+  color:#ffffff
 }
 
 
@@ -52,8 +55,8 @@ html, body {
   min-width: 190px;       /* กันไม่ให้แคบเกินไปบนจอใหญ่ */
   bottom: 0;
   padding: 30px 20px;
-  background-color: #ffffff;
-  border-right: 1px solid rgb(239, 239, 239);
+  background-color: #0072BC;
+  /* border-right: 1px solid #c6c6c6; */
   overflow-y: auto;       /* ถ้าปุ่มเยอะให้เลื่อนเฉพาะ sidebar */
 }
 
@@ -61,55 +64,24 @@ html, body {
   padding: 10px;
   margin: 20px;
   border-radius: 16px;
-  background-color: #dbf0ff;
+  background-color:  #005a9587;
   text-align: center;
+  
 }
 
 .leftbar ul li a {
   display: block;
   margin: 2px;
+  color: #ffffff;
 }
 
 /* ===== พื้นที่เนื้อหา MAIN ด้านขวา ===== */
 .content {
-  position: relative;
-  margin-top: 90px;                    /* เว้นที่ให้ navbar */
-  margin-left: max(5vw,110px);         /* เว้นที่ให้ sidebar (ตาม width ด้านบน) */
-  padding: 10px 20px;  /*ความห่าง บน ล่าง นอกนะ */
+  /* position: relative; */
+  margin-top: 100px;                    /* เว้นที่ให้ navbar เ้ววว */
+  margin-left: max(10vw,80px);         /* เว้นที่ให้ sidebar (ตาม width ด้านบน) */
+  padding: 10px 50px;  /*ความห่าง บน ล่าง นอกนะ */
   min-height: calc(100vh - 80px);      /* สูงอย่างน้อยเต็มจอใต้ navbar */
-  background-color: #ffffff;
-  /* overflow-y: auto;                   เลื่อนเฉพาะคอนเทน */
-  border: 1px solid red;                /* เลื่อนเฉพาะส่วน content */
+  /* background-color: #8b0000 */
+   /* overflow-y: auto;                  */
 }
-
-/* ===== GRID ของการ์ดน้ำท่วม/ไฟป่า ===== */
-/* .contentGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));  
-  gap: 10px;                                       
-  margin-top: 25px;
-} */
-
-/* .contentPage {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 10px 14px;
-  border: 1px solid #000000;
-  width: 100%;           
-  height: 350px;           
-  box-sizing: border-box;
-} */
-
-/* จอเล็ก – ลดจำนวนคอลัมน์ให้อัตโนมัติ */
-/* @media (max-width: 1200px) {
-  .contentGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 800px) {
-  .contentGrid {
-    grid-template-columns: 1fr;
-  } */
-
-  /* ถ้าจอเล็กมากจะให้ sidebar หดหรือเป็นด้านบนก็ได้ต่อยอดทีหลัง */
-

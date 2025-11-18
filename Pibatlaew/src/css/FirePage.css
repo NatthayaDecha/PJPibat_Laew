@@ -1,0 +1,49 @@
+/* ตัวแม่ส่วนน้ำท่วม/ไฟป่า */
+.firepage {
+  position: relative;
+  width: 100%;
+  padding-top: 80px;   /* ชิดขอบบนเหมือนBar */
+}
+
+/* แถบ select จังหวัด – ติดอยู่ด้านบน content ไม่เลื่อนตามการ์ด */
+.provinceBar {
+  position: fixed;
+  top: 90px;                  /* อยู่ใต้ navbar (ปรับตามของจริงเรา) */
+  left: 260px;                /* ขยับให้เริ่มหลัง sidebar (ปรับตามความกว้าง leftbar เรา) */
+  width: calc(100% - 260px);  /* กว้างเท่าเนื้อหาที่ไม่มี sidebar */
+  display: flex;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  z-index: 10;                /* ให้ลอยอยู่เหนือการ์ด */
+}
+
+.provinceSelect {
+  width: 350px;
+  max-width: 90%;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #003088;
+  background: #ffffff;
+  font-size: 15px;
+  color: #004a80;
+}
+
+/* ตัวแม่ของการ์ดทั้งหมด */
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  /* ดันการ์ดลงไปใต้ bar + ขยับให้ตรงกับระยะซ้ายขวา */
+  margin:20px 100px 20px 100px;  /* บน ขวา ล่าง ซ้าย */
+}
+
+/* การ์ดแต่ละใบ */
+.contentPage {
+  background: #952121;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0;
+  width: 380px;
+  height: 330px;
+}

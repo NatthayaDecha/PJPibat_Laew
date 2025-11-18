@@ -1,50 +1,264 @@
-/* /* ตัวแม่ของการ์ดทั้งหมด */
-.contentGrid {
-  display: grid; /*การปรับตามgrid*/
-  grid-template-columns: repeat(3,1fr);  /* 3 ช่องเท่ากัน */
-  gap: 30px; /* ระยะห่างระหว่างการ์ด */
-  margin-top: 25px; /* ห่างจาก select ด้านบน */
-  border: 1px solid red;
- 
+
+/* แถวข้อมูล */
+/* ตัวแม่ของหน้าทั้งหมด */
+.floodPage {
+  width: 100%;
+  padding-top: 80px;   
 }
 
-/* การ์ดแต่ละใบ */
-.contentPage {
-  background: #ffc3c3;
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin: 0px;
-  border: 1px solid #000000;
-  width: 380px;               /* ให้การ์ดกว้างเต็มช่อง grid */
-  height: 330px;             /* ถ้าจะให้สูงเท่ากันคงไว้ได้ */
-  /* ถ้ามี width เดิมเช่น width: 800px; ให้ลบออก ไม่งั้น grid จัดไม่สวย */
-}
-
-
-
-
-
-
-
-
-
-
-
-/* ทำให้ responsive หน้าจอเล็ก */
-/* @media (max-width: 1200px) {
-  .contentGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .contentGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .contentGrid {
-    grid-template-columns: 1fr;
-  }
+/* แถบเลือกจังหวัดด้านบน */
+/* .provinceBar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  margin-bottom: 12px;
 } */
+
+.provinceSelect {
+  width: 320px;
+  max-width: 90%;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #c3d8ff;
+  background: #ffffff;
+  font-size: 14px;
+  color: #004a80;
+}
+
+/* ตัวแม่ของการ์ดทั้งหมด */
+.contentGrid {
+  /* display: grid; */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 คอลัมน์ เท่ากัน */
+  gap: 24px;
+  margin: 30px 120px 30px 120px;
+}
+
+/* การ์ดพื้นฐาน – ไม่กำหนด width/height ให้ปล่อยสูงตามเนื้อหา */
+.contentPage {
+  border-radius: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+/* การ์ดแบบสวย */
+.contentPage.pretty-card {
+  background: #dbf1ff;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: 520px; /*กำหนดความสูงของการดืตรงนี้นะ */
+  gap: 8px;
+}
+
+
+/* วงกลมเลขลำดับ */
+.card-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; 
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* แถวข้อมูล */
+ 
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #9bd6ef; 
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+} 
+
+/* ไอคอน */
+.info-icon {
+  font-size: 16px;
+}
+
+/* label กับ value */
+.info-label {
+  font-weight: 600;
+  color: #000000;
+}
+
+.info-value {
+  font-weight: 500;
+  color: #000000;
+}
+
+/* แถวเน้น (พื้นที่น้ำท่วม) */
+.highlight-row {
+  background: #ffc4c4;
+}
+/* ปรับปรุงการแสดงผลตัวเลขพื้นที่น้ำท่วมให้ดูดีขึ้น */
+.highlight-value {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #E64A19; /* สีส้มเข้ม */
+}
+.highlight-value {
+  color: #dc2626;
+  font-weight: 700;
+}
+/* แถวปุ่มแผนที่ */
+.map-row {
+  background: transparent;
+  padding: 0;
+  margin-top: 6px;
+}
+
+.map-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.map-button:hover {
+  background: #4338ca;
+}
+
+/* แถบสีด้านบนของการ์ดเพื่อแสดงระดับการเตือนภัย */
+.alert-indicator {
+    padding: 8px 15px;
+    margin: -15px -15px 10px -15px; /* <--- บรรทัดนี้คือตัวสำคัญที่ช่วยขยาย */
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: white; 
+}
+/* สีพื้นหลังตามระดับการเตือนภัย */
+.no-alert {
+    background-color: #4CAF50; /* สีเขียว: ระดับปกติ */
+}
+
+.medium-alert {
+    background-color: #FFC107; /* สีเหลือง/ส้ม: ระดับเฝ้าระวัง */
+    color: #333; /* ข้อความสีเข้ม */
+}
+
+.high-alert {
+    background-color: #F44336; /* สีแดง: ระดับอันตรายสูง */
+    animation: pulse-red 2s infinite; /* เพิ่มเอฟเฟกต์กะพริบ */
+}
+
+/* เอฟเฟกต์กะพริบสำหรับระดับอันตรายสูง */
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 #F44336; }
+  70% { box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+}
+/*พื้นที่เเจ้งเตือนเเอร์เร่อ ที่ไม่มี*/
+/* .no-data-message {
+grid-column: 1 / -1; ทำให้กินพื้นที่ความกว้างทั้งหมดของ Grid */
+    
+    /* 1. กำหนดความกว้างสูงสุดเพื่อให้มันมีพื้นที่ในการจัดกึ่งกลาง */
+    /* max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 30px;
+    border: 2px solid #2196F3;
+    border-radius: 12px;
+    background-color: #E3F2FD;
+    color: #1565C0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.no-data-message h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #0D47A1;
+}
+
+.no-data-message p {
+    margin-bottom: 0;
+    font-size: 1.1em;
+} */
+
+.loading-message {
+    grid-column: 1 / -1; /* ทำให้กินพื้นที่ความกว้างทั้งหมดของ Grid */
+    text-align: center;
+    padding: 30px;
+    margin: 20px auto; /* จัดกึ่งกลางเหมือน no-data-message */
+    max-width: 600px; /* กำหนดความกว้างสูงสุด */
+    border: 2px solid #90CAF9; /* สีฟ้าอ่อน */
+    border-radius: 12px;
+    background-color: #E0F2F7; /* พื้นหลังสีอ่อนมาก */
+    color: #42A5F5; /* ข้อความสีน้ำเงิน */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex; /* เพื่อจัดเรียง spinner และข้อความ */
+    flex-direction: column; /* จัดในแนวตั้ง */
+    align-items: center; /* จัดกึ่งกลางในแนวนอน */
+    justify-content: center; /* จัดกึ่งกลางในแนวตั้ง */
+    min-height: 150px; /* กำหนดความสูงขั้นต่ำเผื่อมีข้อมูลน้อย */
+}
+
+.loading-message h2 {
+    margin-top: 15px; /* เว้นจาก spinner */
+    font-size: 1.4em;
+    color: #2196F3;
+}
+
+.loading-message p {
+    font-size: 1em;
+    color: #64B5F6;
+}
+
+/* Spinner Animation */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #2196F3; /* สีของ spinner */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ------------------------------------------- */
+/* สไตล์สำหรับข้อความเมื่อไม่มีข้อมูลน้ำท่วม */
+/* ------------------------------------------- */
+.no-data-message {
+    grid-column: 1 / -1; 
+    max-width: 600px; 
+    margin: 20px auto; 
+    text-align: center;
+    padding: 30px;
+    border: 2px solid #2196F3; 
+    border-radius: 12px;
+    background-color: #E3F2FD; 
+    color: #1565C0; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.no-data-message h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #0D47A1;
+}
+
+.no-data-message p {
+    margin-bottom: 0;
+    font-size: 1.1em;
+}

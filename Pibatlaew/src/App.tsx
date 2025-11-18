@@ -1,27 +1,30 @@
+// App.tsx
 import React from "react";
-// import MainLayout from "./layout/MainLayout";
-// import axios from "axios";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import MainPage from "./layout/MainPage";
 import FloodPage7day from "./page/FloodPage7day";
-import  FirePage30day from "./page/FirePage30day";
 import FloodPage30day from "./page/FloodPage30day";
-// import  FirePage7day from "./Page/FirePage7day";
-// import FirePage1day from "./Page/FirePage1day";
-function App() {
-  return ( 
-    
-    <div className="App">
-      {/* <FloodPage7day/> */}
-    <MainPage>
-    
-    </MainPage>
-      
-       {/* < FirePage30day/> */}
-       {/* <FirePage1day/> */}
-      {/* <FloodPage30day/> */}
-    
+import FirePage from "./page/FirePage";
 
-    </div>
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Layout หลัก */}
+        <Route path="/" element={<MainPage />}>
+          {/* หน้า default ตอนเข้าเว็บครั้งแรก ให้เป็นน้ำท่วม 30 วัน */}
+          <Route index element={<FloodPage30day />} />
+
+          {/* น้ำท่วม */}
+          <Route path="flood7" element={<FloodPage7day />} />
+          <Route path="flood30" element={<FloodPage30day />} />
+
+          {/* ไฟป่า */}
+          <Route path="fire30" element={<FirePage/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
