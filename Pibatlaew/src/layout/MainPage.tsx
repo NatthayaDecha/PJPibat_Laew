@@ -26,12 +26,9 @@ function MainPage() {
           </ul>
         </div>
       </div>
-
       <div className="content flex felx-col">
-        {/* เมนูด้านซ้าย */}
         <div className="leftbar">
           <ul>
-        
             <li>
               <Link to="/flood3">น้ำท่วมในรอบ3วัน</Link>
             </li>
@@ -42,16 +39,16 @@ function MainPage() {
               <Link to="/flood30">น้ำท่วมในรอบ30วัน</Link>
             </li>
             <li>
-              <Link to="/fire1">ไฟป่าในรอบ1วัน </Link>
+              <Link to="/fire1">จุดเกิดไฟป่าในรอบ 1วัน </Link>
             </li>
              <li>
-              <Link to="/fire3">ไฟป่าในรอบ3วัน </Link>
+              <Link to="/fire3">จุดเกิดไฟป่าในรอบ 3วัน </Link>
             </li>
             <li>
-              <Link to="/fire7">ไฟป่าในรอบ7วัน </Link>
+              <Link to="/fire7">จุดเกิดไฟป่าในรอบ 7วัน </Link>
             </li>
             <li>
-              <Link to="/fire30">ไฟป่าในรอบ30วัน </Link>
+              <Link to="/fire30">จุดเกิดไฟป่าในรอบ30วัน </Link>
             </li>
              
           </ul>
@@ -60,12 +57,11 @@ function MainPage() {
         {/* พื้นที่แสดงหน้าแต่ละหน้า (FloodPage, FirePage) */}
         <div className="basis-3/4">
           <div className="flex flex-1 items-start justify-center">
-            <Outlet /> {/* ตรงนี้แหละที่แต่ละ Route จะมาแสดง */}
+            <Outlet /> {/*  Route จะมาแสดง */}
           </div>
         </div>
       </div>
     </>
   );
 }
-
 export default MainPage;

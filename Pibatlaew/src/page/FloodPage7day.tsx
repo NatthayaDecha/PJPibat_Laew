@@ -39,7 +39,7 @@ const getAlertIcon = (area: number): string => {
 function FloodPage7day() {
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true); // เพิ่ม state สำหรับสถานะ loading
+  const [loading, setLoading] = useState(true); // state สำหรับสถานะ loading
   const provinces = [
     { idn: "10", name: "กรุงเทพมหานคร" },
     { idn: "11", name: "สมุทรปราการ" },
@@ -129,16 +129,12 @@ function FloodPage7day() {
 
     console.log(event.target.value);
   };
-
   useEffect(() => {
     const fetchFloodData = async () => {
       // 1. เริ่มโหลด
-
       setLoading(true);
       setFloodData([]); // ล้างข้อมูลเก่าก่อน
-
       setError(""); // ล้าง error เก่า
-
       try {
         const response = await axios.get(
           "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/7days?limit=9999&offset=0&pv_idn=" +
@@ -155,7 +151,6 @@ function FloodPage7day() {
         );
 
         // 2. ตรวจสอบข้อมูลและตั้งค่า
-
         if (response.data && Array.isArray(response.data.features)) {
           setFloodData(response.data.features);
         } else {
@@ -163,11 +158,9 @@ function FloodPage7day() {
         }
       } catch (err) {
         console.error("Error fetching flood data:", err);
-
         setError("ไม่สามารถดึงข้อมูลน้ำท่วมได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง");
       } finally {
         // 3. โหลดเสร็จสิ้น (ไม่ว่าจะสำเร็จหรือมี Error)
-
         setLoading(false);
       }
     };
@@ -177,8 +170,6 @@ function FloodPage7day() {
 
   return (
     <div className="floodPage">
-      {/* แถบเลือกจังหวัด */}
-
       <div className="provinceBar">
         <select
           id="province-select"
@@ -193,9 +184,7 @@ function FloodPage7day() {
           ))}
         </select>
       </div>
-
       {/* การ์ดข้อมูลน้ำท่วม */}
-
       <div className="contentGrid">
         {error && (
           <p
@@ -205,44 +194,33 @@ function FloodPage7day() {
           </p>
         )}
 
-        {/* ------------------------------------------------------------- */}
-
-        {/* 💡 เงื่อนไขการแสดงผล (ใช้ Loading เป็นตัวควบคุมหลัก) */}
-
-        {/* ------------------------------------------------------------- */}
+        {/*  เงื่อนไขการแสดงผล (ใช้ Loading เป็นตัวควบคุมหลัก) */}
 
         {loading ? (
           <div className="loading-message">
             <div className="spinner"></div>
-
             <h2>กำลังโหลดข้อมูล...</h2>
-
             <p>กรุณารอสักครู่</p>
           </div>
         ) : floodData.length === 0 && !error ? ( // แสดงเมื่อโหลดเสร็จ ไม่มี error และไม่มีข้อมูล
           <div className="no-data-message">
             <h2>💧 ยังไม่มีเหตุการณ์น้ำท่วมที่ตรวจพบ</h2>
-
             <p>
               ในพื้นที่ **
               {provinces.find((p) => p.idn === selectedProvinceIdn)?.name ||
                 "จังหวัดที่เลือก"}
               ** ในช่วง7วันที่ผ่านมา
             </p>
-
             <p>กรุณาตรวจสอบจังหวัดอื่น ๆ หรือรอติดตามข้อมูลอยู่ตลอดเวลา</p>
           </div>
         ) : (
           // แสดงข้อมูลปกติเมื่อมีข้อมูล
-
           floodData.map((f, i) => {
             const createdAt = new Date(f.properties._createdAt);
-
             const alertMessage = getAlertIcon(f.properties._area);
-
             return (
               <div className="contentPage pretty-card" key={f.id}>
-                {/* แถบแจ้งเตือนภัย *********************************** */}
+                {/* แถบแจ้งเตือนภัย */}
 
                 <div
                   className={`alert-indicator ${
@@ -256,61 +234,34 @@ function FloodPage7day() {
                   {alertMessage}
                 </div>
 
-                {/* สิ้นสุดแถบแจ้งเตือนภัย ****************************** */}
-
-                {/* เลขลำดับในวงกลม */}
-
+                {/* สิ้นสุดแถบแจ้งเตือนภัย */}
+                {/* เลขในวงกลม */}
                 <div className="card-index">
                   <span>{i + 1}</span>
                 </div>
-
-                {/* จังหวัด */}
-
                 <div className="info-row">
                   <span className="info-icon">🏛️</span>
-
                   <span className="info-label">จังหวัด: </span>
-
                   <span className="info-value">{f.properties.pv_tn}</span>
                 </div>
-
-                {/* อำเภอ */}
-
                 <div className="info-row">
                   <span className="info-icon">📍</span>
-
                   <span className="info-label">อำเภอ:</span>
-
                   <span className="info-value">{f.properties.ap_tn}</span>
                 </div>
-
-                {/* ตำบล */}
-
                 <div className="info-row">
                   <span className="info-icon">🏘️</span>
-
                   <span className="info-label">ตำบล: </span>
-
                   <span className="info-value">{f.properties.tb_tn}</span>
                 </div>
-
-                {/* ภูมิภาค */}
-
                 <div className="info-row">
                   <span className="info-icon">🧭</span>
-
                   <span className="info-label">ภูมิภาค: </span>
-
                   <span className="info-value">{f.properties.region}</span>
                 </div>
-
-                {/* พื้นที่น้ำท่วม (แถวเน้น) */}
-
                 <div className="info-row highlight-row">
                   <span className="info-icon">📏</span>
-
                   <span className="info-label">พื้นที่น้ำท่วม: </span>
-
                   <span className="info-value highlight-value">
                     {f.properties._area.toLocaleString(undefined, {
                       minimumFractionDigits: 2,
@@ -319,47 +270,30 @@ function FloodPage7day() {
                     ตร.ม.
                   </span>
                 </div>
-
-                {/* วันที่ตรวจพบ (ไทย) */}
-
                 <div className="info-row">
                   <span className="info-icon">📅</span>
-
                   <span className="info-label">วันที่ตรวจพบ: </span>
-
                   <span className="info-value">
                     {createdAt.toLocaleDateString("th-TH", {
                       year: "numeric",
-
                       month: "long",
-
                       day: "numeric",
                     })}
                   </span>
                 </div>
-
-                {/* เวลา (ชั่วโมง นาที วินาที ภาษาอังกฤษ) */}
-
                 <div className="info-row">
                   <span className="info-icon">⏰</span>
-
                   <span className="info-label">เวลาที่ตรวจพบ: </span>
-
                   <span className="info-value">
                     {createdAt.toLocaleTimeString("en-US", {
                       hour: "2-digit",
-
                       minute: "2-digit",
-
                       second: "2-digit",
                     })}
                   </span>
                 </div>
-
-                {/* ปุ่มไป Google Maps */}
                 <div className="info-row map-row">
-                  {/* แก้ไขลิงก์ Google Maps ให้ถูกต้อง */}
-                  <a
+                    <a
                     className="map-button"
                     href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`}
                     target="_blank"

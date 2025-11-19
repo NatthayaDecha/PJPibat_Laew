@@ -5,14 +5,14 @@
 }
 .fire-provinceBar {
   position: fixed;
-  top: 90px; /* อยู่ใต้ navbar (ปรับตามของจริงเรา) */
-  left: 260px; /* ขยับให้เริ่มหลัง sidebar (ปรับตามความกว้าง leftbar เรา) */
+  top: 90px; /* อยู่ใต้ navbar (ปรับตามของจริง) */
+  left: 260px; /* ขยับให้เริ่มหลัง sidebar (ปรับตามความกว้าง leftbar นะ) */
   width: calc(100% - 260px); /* กว้างเท่าเนื้อหาที่ไม่มี sidebar */
   display: flex;
   justify-content: center;
   padding: 12px 24px;
   background-color: #ffffff;
-  z-index: 10; /* ให้ลอยอยู่เหนือการ์ด */
+  z-index: 10; /* ลอยอยู่เหนือการ์ด */
 }
 .fire-provinceSelect {
   width: 350px;
@@ -28,9 +28,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  /* ดันการ์ดลงไปใต้ bar + ขยับให้ตรงกับระยะซ้ายขวา */
   margin:90px 100px 20px 100px;  /* บน ขวา ล่าง ซ้าย  ขยับ */
-  padding: 30px 20px 10px 30px; /* ขอบในการ์ดสำคัญ */
+  padding: 30px 20px 10px 30px; /* ขอบในการ์ดปรับตรงนี้สำคัญ */
 }
 .fire-contentPage {
   background: #952121;
@@ -47,13 +46,13 @@
   border: none;
   display: flex;
   flex-direction: column;
-  height: 520px; /*กำหนดความสูงของการดืตรงนี้นะ */
+  height: 520px; /*กำหนดความสูงของการด์ */
   gap: 8px;
 
 }
 
 .fire-contentPage.pretty-card:hover {
-  transform: translateY(-5px); /* ลอยขึ้นตอนชี้ */
+  transform: translateY(-5px); /* ลอยขึ้นตอนชี้ลุกเล่น */
 }
 
 /* แถบสีด้านบน (ดึงชิดขอบบน) */
@@ -67,7 +66,7 @@
   color: white;
 }
 
-/* วงกลมเลขลำดับ */
+/* วงกลมเลขกลมๆ */
 .fire-card-index {
   display: inline-flex;
   align-items: center;
@@ -81,7 +80,7 @@
   margin: 0 0 8px 15px;
 }
 
-/* แถวข้อมูล */
+/* แถวข้อมูลสีหลายๆ */
 .fire-info-row {
   display: flex;
   align-items: center;
@@ -109,15 +108,15 @@
 
 /* แถวเน้น (อุณหภูมิ) */
 .fire-highlight-row {
-  background: #ffeba7; /* ส้มเข้ม */
+  background: #ffeba7;
 }
 .fire-highlight-value {
   font-size: 1.1em;
   font-weight: 700;
-  color: #f80000; /* ตัวหนังสือสีส้มแดง */
+  color: #f80000; 
 }
 
-/* ปุ่มแผนที่ */
+
 .fire-map-row {
   background: transparent;
   padding: 0;
@@ -130,7 +129,7 @@
   justify-content: center;
   padding: 8px 14px;
   border-radius: 999px;
-  background: #e3591e; /* สีแดง */
+  background: #e3591e; 
   color: #ffffff;
   font-size: 14px;
   text-decoration: none;
@@ -140,19 +139,16 @@
   background: #6c1f03;
 }
 
-
-/* =========================================================
-   6. สีสถานะแจ้งเตือน
-   ========================================================= */
+/* เเจ้งเตือนจ้า */
 .fire-no-alert {
-  background-color: #4caf50; /* เขียว */
+  background-color: #4caf50; 
 }
 .fire-medium-alert {
-  background-color: #ffc107; /* เหลือง */
+  background-color: #ffc107; 
   color: #333;
 }
 .fire-high-alert {
-  background-color: #cd180b; /* แดง */
+  background-color: #cd180b; 
   animation: pulse-red 2s infinite;
 }
 
@@ -168,9 +164,7 @@
   }
 }
 
-/* =========================================================
-   7. Loading & No Data (จัดกลางจอ)
-   ========================================================= */
+/*โหลดข้อมูล ข้อมูล  */
 .fire-loading-message,
 .fire-no-data-message {
   justify-self: center;

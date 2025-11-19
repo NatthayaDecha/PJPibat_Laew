@@ -2,22 +2,22 @@
 html, body {
   margin: 0;
   padding: 0;
-  width: 100%;/* height: 100%; */
-  overflow-x: hidden; /* กันสกอลบาร์แนวนอน */
+  width: 100%; 
+  overflow-x: hidden; 
   background-color: #ffffff;
 }
 
-/* ===== NAVBAR ด้านบน ===== */
+/* NAVBAR ด้านบน */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 90px;                 /* เผื่อความสูงให้โลโก้ + ปุ่ม */
+  height: 90px;           /* ความสูงให้โลโก้ + ปุ่ม */
   padding: 0 24px;
   background-color: #0072BC;
   z-index: 1000;
-  align-items: center;          /* จัดให้อยู่กลางแนวตั้ง */
+  align-items: center;     
 }
 
 /* กล่องเมนูบนขวา */
@@ -35,7 +35,7 @@ html, body {
 
 .box3 ul li {
   display: flex;
-  margin: 0 20px;               /* เอา margin บน–ล่างออก เหลือแค่ซ้าย–ขวา */
+  margin: 0 20px;               /* เอาmargin บน–ล่าง ออก*/
   padding: 10px 20px;
   border-radius: 20px;
   background-color:#004878;
@@ -45,41 +45,40 @@ html, body {
 }
 
 
-/* ===== SIDEBAR ซ้าย ===== */
+/* sidebrar ซ้าย */
 .leftbar {
   position: fixed;
-  top: 80px;              /* อยู่ใต้ navbar */
+  top: 80px;         
   left: 0;
   width: 15vw;
-  min-width: 190px;       /* กันไม่ให้แคบเกินไปบนจอใหญ่ */
+  min-width: 190px;     
   bottom: 0;
   padding: 30px 20px;
   background-color: #0072BC;
-  overflow-y: auto;       /* ถ้าปุ่มเยอะให้เลื่อนเฉพาะ sidebar */
+  overflow-y: auto;      
 }
 
 .leftbar ul li {
   padding: 8px;
-  margin: 15px;
+  margin: 10px;
   border-radius: 16px;
   background-color:  #004878;
   text-align: center;
-  
+}
+.leftbar ul li:hover {
+  background: #003050;
 }
 
 .leftbar ul li a {
   display: block;
   margin: 2px;
   color: #ffffff;
+  font-size: 15px;
 }
 
-/* ===== พื้นที่เนื้อหา MAIN ด้านขวา ===== */
+/* เนื้อหา main ด้านขวา */
 .content {
-  /* position: relative; */
   margin-top: 100px;                  
   margin-left: max(10vw,80px);         
-  /*888888 padding: 10px 60px;   */
   min-height: calc(100vh - 80px);     
-  /* background-color: #8b0000 */
-   /* overflow-y: auto;                  */
 }
