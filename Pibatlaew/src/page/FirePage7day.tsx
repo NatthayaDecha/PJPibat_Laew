@@ -146,7 +146,7 @@ function FirePage7day() {
       setError(""); // ล้าง error เก่า
       try {
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/7days?limit=100&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/7days?limit=1000&offset=0&pv_idn=" +
             selectedProvinceIdn,
           {
             headers: {

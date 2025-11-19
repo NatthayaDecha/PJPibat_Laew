@@ -142,7 +142,7 @@ function FirePage30day() {
       setError(""); // ล้าง error เก่า
       try {
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/30days?limit=500&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/30days?limit=1000&offset=0&pv_idn=" +
             selectedProvinceIdn,
           {
             headers: {

@@ -10,21 +10,6 @@ function MainPage() {
         <div className="flex-1 box1 ">
           <img src="/Logowed.png" alt="logo" width={"250px"}  />
         </div>
-        <div className="flex-1 box2"></div>
-        <div className="flex-1 box3 text-center">
-          <ul>
-             {/* <li>
-              <Link to="/HowPage">เเนะนำ</Link>
-            </li>
-            <li>
-              <Link to="/howto">วิธีรับมือ</Link>
-            </li>
-            <li>
-              <Link to="/">เกี่ยวกับเรา</Link>
-            </li> */}
-            
-          </ul>
-        </div>
       </div>
       <div className="content flex felx-col">
         <div className="leftbar">

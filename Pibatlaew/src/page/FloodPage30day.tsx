@@ -138,7 +138,7 @@ function FloodPage30day() {
 
       try {
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=100&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=5000&offset=0&pv_idn=" +
             selectedProvinceIdn,
 
           {
