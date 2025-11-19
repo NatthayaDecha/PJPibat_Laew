@@ -2,16 +2,16 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "../css/MainPage.css";
-
 function MainPage() {
   return (
     <>
+      {/* การสรา้งตัวหลักของเว็บ */}
       <div className="flex felx-col navbar">
         <div className="flex-1 box1 ">
           <img src="/Logowed.png" alt="logo" width={"250px"}  />
         </div>
       </div>
-      <div className="content flex felx-col">
+      <div className="content flex felx-col"> 
         <div className="leftbar">
           <ul>
             <li>
@@ -34,11 +34,9 @@ function MainPage() {
             </li>
             <li>
               <Link to="/fire30">จุดเกิดไฟป่าในรอบ30วัน </Link>
-            </li>
-             
+            </li>    
           </ul>
         </div>
-
         {/* พื้นที่แสดงหน้าแต่ละหน้า (FloodPage, FirePage) */}
         <div className="basis-3/4">
           <div className="flex flex-1 items-start justify-center">

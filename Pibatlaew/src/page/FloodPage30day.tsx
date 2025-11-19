@@ -140,11 +140,9 @@ function FloodPage30day() {
         const response = await axios.get(
           "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=5000&offset=0&pv_idn=" +
             selectedProvinceIdn,
-
           {
             headers: {
               accept: "application/json",
-
               "API-Key":
                 "ne87zBRj82586Rybub6iIwo5jVNxgE9JZ3MXMENDLOsgPXfqj96WbuX7dBvspfeY",
             },
@@ -172,12 +170,12 @@ function FloodPage30day() {
 
       <div className="provinceBar">
         <select
-          id="province-select"
-          className="provinceSelect"
-          value={selectedProvinceIdn}
-          onChange={handleProvinceChange}
+          id="province-select"                 
+          className="provinceSelect"           /* ในการปรับตกแต่งcss */
+          value={selectedProvinceIdn}          /* การตั้งค่าเริ่มต้น */
+          onChange={handleProvinceChange}      /* การเปลี่ยนแปลงค่า*/
         >
-          {provinces.map((p) => (
+          {provinces.map((p) => (                    
             <option key={p.idn} value={p.idn}>
               {p.name}
             </option>
@@ -193,7 +191,6 @@ function FloodPage30day() {
             {error}
           </p>
         )}
-
         {loading ? (
           <div className="loading-message">
             <div className="spinner"></div>
@@ -221,7 +218,6 @@ function FloodPage30day() {
             return (
               <div className="contentPage pretty-card" key={f.id}>
                 {/* แถบแจ้งเตือนภัย */}
-
                 <div
                   className={`alert-indicator ${
                     alertMessage.includes("🛑")
@@ -233,7 +229,6 @@ function FloodPage30day() {
                 >
                   {alertMessage}
                 </div>
-
                 {/* สิ้นสุดแถบแจ้งเตือนภัย */}
                 <div className="card-index">
                   <span>{i + 1}</span>
