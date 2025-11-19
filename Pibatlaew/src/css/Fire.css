@@ -30,6 +30,7 @@
   gap: 25px;
   /* ดันการ์ดลงไปใต้ bar + ขยับให้ตรงกับระยะซ้ายขวา */
   margin:90px 100px 20px 100px;  /* บน ขวา ล่าง ซ้าย  ขยับ */
+  padding: 30px 20px 10px 30px; /* ขอบในการ์ดสำคัญ */
 }
 .fire-contentPage {
   background: #952121;

@@ -1,55 +1,33 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
-
 import "../css/Fire.css"; 
 
 interface FireFeature {
   id: string;
-
   type: string;
-
   geometry: {
     type: string;
-
     coordinates: number[][][][];
   };
-
   properties: {
     _id: string;
-
     bright_ti4: number; // อุณหภูมิในหน่วย Kelvin
-
     ap_en: string;
-
     ap_tn: string; // อำเภอ (ไทย)
-
     latitude: number;
-
     longitude: number;
-
     pv_code: number;
-
     pv_en: string;
-
     pv_idn: string;
-
     pv_tn: string; // จังหวัด (ไทย)
-
+    ct_tn: string; // เขต/ภาค
     re_royin: string; // ภูมิภาค
-
     tambol: string;
-
     tb_en: string;
-
     tb_tn: string; // ตำบล (ไทย)
-
     th_date: string; // วันที่ตรวจพบ
-
     th_time: number; // เวลาตรวจพบ (ไม่ค่อยได้ใช้ในโค้ดนี้)
-
     village: string;
-
     linkgmap: string;
   };
 }
@@ -77,7 +55,7 @@ const getAlertLevel = (k: number): { message: string; className: string } => {
   return { message: "✅ ปกติ/ความร้อนพื้นผิว", className: "fire-no-alert" };
 };
 
-function FirePage() {
+function FirePage7day() {
   const [fireData, setFireData] = useState<FireFeature[]>([]);
 
   const [error, setError] = useState("");
@@ -166,7 +144,7 @@ function FirePage() {
     { idn: "96", name: "นราธิวาส" },
   ];
 
-  const [selectedProvinceIdn, setSelectedProvinceIdn] = useState<string>("14");
+  const [selectedProvinceIdn, setSelectedProvinceIdn] = useState<string>("10");
   const handleProvinceChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -184,7 +162,7 @@ function FirePage() {
 
       try {
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/30days?limit=500&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/7days?limit=100&offset=0&pv_idn=" +
             selectedProvinceIdn,
           {
             headers: {
@@ -253,7 +231,7 @@ function FirePage() {
               ในพื้นที่ **
               {provinces.find((p) => p.idn === selectedProvinceIdn)?.name ||
                 "จังหวัดที่เลือก"}
-              ** ในช่วงวันที่ผ่านมา
+              ** ในช่วงวันที่7ผ่านมา
             </p>
             <p>กรุณาตรวจสอบจังหวัดอื่น ๆ หรือรอติดตามข้อมูลอยู่ตลอดเวลา</p>
           </div>
@@ -349,6 +327,7 @@ function FirePage() {
                   >
                     🗺️ ดูบนแผนที่ Google Maps
                   </a>
+                  
                 </div>
               </div>
             );
@@ -359,4 +338,4 @@ function FirePage() {
   );
 }
 
-export default FirePage;
+export default FirePage7day;

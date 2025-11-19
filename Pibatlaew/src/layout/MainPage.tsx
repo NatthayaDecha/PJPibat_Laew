@@ -12,14 +12,18 @@ function MainPage() {
         </div>
         <div className="flex-1 box2"></div>
         <div className="flex-1 box3 text-center">
-          {/* <ul>
+          <ul>
+             {/* <li>
+              <Link to="/HowPage">เเนะนำ</Link>
+            </li>
             <li>
               <Link to="/howto">วิธีรับมือ</Link>
             </li>
             <li>
               <Link to="/">เกี่ยวกับเรา</Link>
-            </li>
-          </ul> */}
+            </li> */}
+            
+          </ul>
         </div>
       </div>
 
@@ -27,18 +31,29 @@ function MainPage() {
         {/* เมนูด้านซ้าย */}
         <div className="leftbar">
           <ul>
+        
             <li>
-              <Link to="/suggest">เนะนำ</Link>
-            </li>
-            <li>
-              <Link to="/">วิธีรับมือ</Link>
-            </li>
-              <li>
-              <Link to="/flood30">น้ำท่วม</Link>
+              <Link to="/flood3">น้ำท่วมในรอบ3วัน</Link>
             </li>
             <li>
-              <Link to="/fire30">ไฟป่า</Link>
+              <Link to="/flood7">น้ำท่วมในรอบ7วัน</Link>
             </li>
+            <li>
+              <Link to="/flood30">น้ำท่วมในรอบ30วัน</Link>
+            </li>
+            <li>
+              <Link to="/fire1">ไฟป่าในรอบ1วัน </Link>
+            </li>
+             <li>
+              <Link to="/fire3">ไฟป่าในรอบ3วัน </Link>
+            </li>
+            <li>
+              <Link to="/fire7">ไฟป่าในรอบ7วัน </Link>
+            </li>
+            <li>
+              <Link to="/fire30">ไฟป่าในรอบ30วัน </Link>
+            </li>
+             
           </ul>
         </div>
 

@@ -16,7 +16,6 @@ html, body {
   height: 90px;                 /* เผื่อความสูงให้โลโก้ + ปุ่ม */
   padding: 0 24px;
   background-color: #0072BC;
-  /* border-bottom: 2px solid  #036aae; */
   z-index: 1000;
   align-items: center;          /* จัดให้อยู่กลางแนวตั้ง */
 }
@@ -29,14 +28,14 @@ html, body {
 
 .box3 ul {
   display: flex;
-  align-items: center;          /* เมนูใน ul อยู่กลางแนวตั้ง */
-  margin: 0;
-  padding: 0;
+  align-items: center;      
+  padding:0px ;
+
 }
 
 .box3 ul li {
   display: flex;
-  margin: 0 16px;               /* เอา margin บน–ล่างออก เหลือแค่ซ้าย–ขวา */
+  margin: 0 20px;               /* เอา margin บน–ล่างออก เหลือแค่ซ้าย–ขวา */
   padding: 10px 20px;
   border-radius: 20px;
   background-color:#004878;
@@ -56,15 +55,14 @@ html, body {
   bottom: 0;
   padding: 30px 20px;
   background-color: #0072BC;
-  /* border-right: 1px solid #c6c6c6; */
   overflow-y: auto;       /* ถ้าปุ่มเยอะให้เลื่อนเฉพาะ sidebar */
 }
 
 .leftbar ul li {
-  padding: 10px;
-  margin: 20px;
+  padding: 8px;
+  margin: 15px;
   border-radius: 16px;
-  background-color:  #005a9587;
+  background-color:  #004878;
   text-align: center;
   
 }
@@ -78,10 +76,10 @@ html, body {
 /* ===== พื้นที่เนื้อหา MAIN ด้านขวา ===== */
 .content {
   /* position: relative; */
-  margin-top: 100px;                    /* เว้นที่ให้ navbar เ้ววว */
-  margin-left: max(10vw,80px);         /* เว้นที่ให้ sidebar (ตาม width ด้านบน) */
-  padding: 10px 50px;  /*ความห่าง บน ล่าง นอกนะ */
-  min-height: calc(100vh - 80px);      /* สูงอย่างน้อยเต็มจอใต้ navbar */
+  margin-top: 100px;                  
+  margin-left: max(10vw,80px);         
+  /*888888 padding: 10px 60px;   */
+  min-height: calc(100vh - 80px);     
   /* background-color: #8b0000 */
    /* overflow-y: auto;                  */
 }

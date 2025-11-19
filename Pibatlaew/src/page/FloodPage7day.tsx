@@ -36,7 +36,7 @@ const getAlertIcon = (area: number): string => {
   return "✅ ระดับปกติ";
 };
 
-function FloodPage30day() {
+function FloodPage7day() {
   const [floodData, setFloodData] = useState<FloodFeature[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true); // เพิ่ม state สำหรับสถานะ loading
@@ -141,7 +141,7 @@ function FloodPage30day() {
 
       try {
         const response = await axios.get(
-          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/30days?limit=100&offset=0&pv_idn=" +
+          "https://api-gateway.gistda.or.th/api/2.0/resources/features/flood/7days?limit=9999&offset=0&pv_idn=" +
             selectedProvinceIdn,
 
           {
@@ -227,7 +227,7 @@ function FloodPage30day() {
               ในพื้นที่ **
               {provinces.find((p) => p.idn === selectedProvinceIdn)?.name ||
                 "จังหวัดที่เลือก"}
-              ** ในช่วงวันที่ผ่านมา30วัน
+              ** ในช่วง7วันที่ผ่านมา
             </p>
 
             <p>กรุณาตรวจสอบจังหวัดอื่น ๆ หรือรอติดตามข้อมูลอยู่ตลอดเวลา</p>
@@ -357,12 +357,10 @@ function FloodPage30day() {
                 </div>
 
                 {/* ปุ่มไป Google Maps */}
-
                 <div className="info-row map-row">
+                  {/* แก้ไขลิงก์ Google Maps ให้ถูกต้อง */}
                   <a
                     className="map-button"
-                    // แก้ไขลิงก์ Google Maps ให้ถูกต้อง
-
                     href={`https://www.google.com/maps/search/${f.geometry.coordinates[0][0][0][1]},${f.geometry.coordinates[0][0][0][0]}?sa=X&ved=1t:242&ictx=111`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -379,4 +377,4 @@ function FloodPage30day() {
   );
 }
 
-export default FloodPage30day;
+export default FloodPage7day;
