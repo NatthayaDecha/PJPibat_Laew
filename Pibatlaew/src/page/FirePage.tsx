@@ -1,40 +1,92 @@
 import React, { useEffect, useState } from "react";
+
 import axios from "axios";
-import "../css/FirePage.css";
+
+import "../css/Fire.css"; 
 
 interface FireFeature {
   id: string;
+
   type: string;
+
   geometry: {
     type: string;
+
     coordinates: number[][][][];
   };
+
   properties: {
     _id: string;
-    bright_ti4: number;
+
+    bright_ti4: number; // อุณหภูมิในหน่วย Kelvin
+
     ap_en: string;
-    ap_tn: string;
+
+    ap_tn: string; // อำเภอ (ไทย)
+
     latitude: number;
+
     longitude: number;
+
     pv_code: number;
+
     pv_en: string;
+
     pv_idn: string;
-    pv_tn: string;
-    re_royin: string;
+
+    pv_tn: string; // จังหวัด (ไทย)
+
+    re_royin: string; // ภูมิภาค
+
     tambol: string;
+
     tb_en: string;
-    tb_tn: string;
-    th_date: string; //วันไทยไม่ใช่utc
-    th_time: number; //เวลาไทยไม่ใช่utc
+
+    tb_tn: string; // ตำบล (ไทย)
+
+    th_date: string; // วันที่ตรวจพบ
+
+    th_time: number; // เวลาตรวจพบ (ไม่ค่อยได้ใช้ในโค้ดนี้)
+
     village: string;
+
     linkgmap: string;
   };
 }
 
+// ฟังก์ชันแปลง Kelvin เป็น Celsius
+
+const kelvinToCelsius = (k: number) => (k - 273.15).toFixed(1);
+
+// ฟังก์ชันกำหนดระดับความร้อนและการแจ้งเตือน (ล้อตาม Area ของ Flood)
+
+const getAlertLevel = (k: number): { message: string; className: string } => {
+  // bright_ti4 (Kelvin) เป็นตัววัดความร้อน
+
+  if (k > 320) {
+    return {
+      message: "🔥 ร้อนผิดปกติ (มีโอกาสเป็นไฟจริง)",
+      className: "fire-high-alert",
+    };
+  }
+
+  if (k > 310 && k <= 320) {
+    return { message: "⚠️ ร้อนมาก (อาจมีการเผา)", className: " fire-medium-alert" };
+  }
+
+  return { message: "✅ ปกติ/ความร้อนพื้นผิว", className: "fire-no-alert" };
+};
+
 function FirePage() {
   const [fireData, setFireData] = useState<FireFeature[]>([]);
+
   const [error, setError] = useState("");
+
+  const [loading, setLoading] = useState(true); // เพิ่ม state สำหรับสถานะ loading
+
   const provinces = [
+    // ... (รายชื่อจังหวัดที่ตัดมาจากโค้ดแม่)
+
     { idn: "10", name: "กรุงเทพมหานคร" },
     { idn: "11", name: "สมุทรปราการ" },
     { idn: "12", name: "นนทบุรี" },
@@ -121,22 +173,16 @@ function FirePage() {
     setSelectedProvinceIdn(event.target.value);
     console.log(event.target.value);
   };
-  const kelvinToCelsius = (k: number) => (k - 273.15).toFixed(1);
-  const heatLevel = (k: number): string => {
-    if (k >= 280 && k <= 290) return "ปกติ (อุณหภูมิพื้นดินทั่วไป)";
-    if (k >= 300 && k <= 310) return "เริ่มมีความร้อนสูง";
-    if (k > 310 && k <= 320) return "ร้อนมาก (อาจเป็นการเผา)";
-    if (k > 320) return "ร้อนผิดปกติ (มีโอกาสเป็นไฟจริง)";
-    return "ข้อมูลไม่อยู่ในช่วงมาตรฐาน";
-  };
 
   useEffect(() => {
     if (!selectedProvinceIdn) return;
-    const fetchFloodData = async () => {
-      try {
-        setFireData([]);
-        setError("");
+    const fetchFireData = async () => {
+      // 1. เริ่มโหลด
+      setLoading(true);
+      setFireData([]); // ล้างข้อมูลเก่าก่อน
+      setError(""); // ล้าง error เก่า
 
+      try {
         const response = await axios.get(
           "https://api-gateway.gistda.or.th/api/2.0/resources/features/viirs/30days?limit=500&offset=0&pv_idn=" +
             selectedProvinceIdn,
@@ -149,63 +195,165 @@ function FirePage() {
           }
         );
 
-        setFireData(response.data.features || []);
+        // 2. ตรวจสอบข้อมูลและตั้งค่า
+        if (response.data && Array.isArray(response.data.features)) {
+          setFireData(response.data.features);
+        } else {
+          setFireData([]); // ถ้าไม่มีข้อมูล features ให้ตั้งเป็นอาร์เรย์ว่าง
+        }
       } catch (err) {
         console.error(err);
-        setError("ไม่สามารถดึงข้อมูลได้");
+        setError("ไม่สามารถดึงข้อมูลไฟป่าได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง");
+      } finally {
+        // 3. โหลดเสร็จสิ้น
+
+        setLoading(false);
       }
     };
-
-    fetchFloodData();
+    fetchFireData();
   }, [selectedProvinceIdn]);
-
   return (
-    <div className="firepage">
+    <div className="fire-page">
+      {/* แถบเลือกจังหวัด */}
+
+      <div className="fire-provinceBar">
+        <select
+          id="province-select"
+          className="fire-provinceSelect"
+          value={selectedProvinceIdn}
+          onChange={handleProvinceChange}
+        >
+          {provinces.map((p) => (
+            <option key={p.idn} value={p.idn}>
+              {p.name}
+            </option>
+          ))}
+        </select>
+      </div>
       {/* การ์ดข้อมูลไฟป่า*/}
-      <div className="contentGrid">
-        <div className="provinceBar">
-          <select
-            id="province-select"
-            className="provinceSelect"
-            value={selectedProvinceIdn}
-            onChange={handleProvinceChange}
+      <div className="fire-contentGrid">
+        {error && (
+          <p
+            style={{ color: "red", gridColumn: "1 / -1", textAlign: "center" }}
           >
-            {provinces.map((p) => (
-              <option key={p.idn} value={p.idn}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        {error && <p style={{ color: "red", gridColumn: "1 / -1" }}>{error}</p>}
-        {fireData.map((f, i) => (
-          <div className="contentPage" key={f.id}>
-            <h4>พื้นที่ที่ {i + 1}</h4>
-            <p>จังหวัด: {f.properties.pv_tn}</p>
-            <p>อำเภอ: {f.properties.ap_tn}</p>
-            <p>ตำบล: {f.properties.tb_tn}</p>
-            <p>หมู่บ้าน: {f.properties.village}</p>
-            <p>อุณหภูมิ: {kelvinToCelsius(f.properties.bright_ti4)}°C</p>
-            <p>สภาพอากาศ: {heatLevel(f.properties.bright_ti4)}</p>
-            <p>
-              วันที่ตรวจพบ:{" "}
-              {new Date(f.properties.th_date).toLocaleDateString("th-TH", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
-            <p>
-              <a
-                href={f.properties.linkgmap}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ดูบนแผนที่ Google Maps
-              </a>
-            </p>
+            {error}
+          </p>
+        )}
+        {/* 💡 เงื่อนไขการแสดงผล (Loading / No Data / Data) */}
+        {loading ? (
+          <div className="fire-loading-message">
+            <div className="fire-spinner"></div>
+            <h2>กำลังโหลดข้อมูล...</h2>
+            <p>กรุณารอสักครู่</p>
           </div>
-        ))}
+        ) : fireData.length === 0 && !error ? ( // แสดงเมื่อโหลดเสร็จ ไม่มี error และไม่มีข้อมูล
+          <div className="fire-no-data-message">
+            <h2>🔥 ยังไม่พบจุดความร้อนที่ผิดปกติ</h2>
+            <p>
+              ในพื้นที่ **
+              {provinces.find((p) => p.idn === selectedProvinceIdn)?.name ||
+                "จังหวัดที่เลือก"}
+              ** ในช่วงวันที่ผ่านมา
+            </p>
+            <p>กรุณาตรวจสอบจังหวัดอื่น ๆ หรือรอติดตามข้อมูลอยู่ตลอดเวลา</p>
+          </div>
+        ) : (
+          // แสดงข้อมูลปกติเมื่อมีข้อมูล
+
+          fireData.map((f, i) => {
+            const alert = getAlertLevel(f.properties.bright_ti4);
+            const celsius = kelvinToCelsius(f.properties.bright_ti4);
+            const date = new Date(f.properties.th_date);
+            // เนื่องจาก API ให้เวลาเป็นตัวเลข 'th_time' เช่น 1000, 1430 ต้องแปลงเป็น string ก่อน
+            const timeString = f.properties.th_time.toString().padStart(4, "0");
+            const hours = timeString.substring(0, 2);
+            const minutes = timeString.substring(2, 4);
+            return (
+              <div className="fire-contentPage pretty-card" key={f.id}>
+                {/* แถบแจ้งเตือนภัย *********************************** */}
+                <div className={`fire-alert-indicator ${alert.className}`}>
+                  {alert.message}
+                </div>
+                {/* สิ้นสุดแถบแจ้งเตือนภัย ****************************** */}
+                {/* เลขลำดับในวงกลม */}
+                <div className="fire-card-index">
+                  <span>{i + 1}</span>
+                </div>
+                {/* จังหวัด */}
+                <div className="fire-info-row">
+                  <span className="fire-info-icon">🏛️</span>
+                  <span className="fire-info-label">จังหวัด: </span>
+                  <span className="fire-info-value">{f.properties.pv_tn}</span>
+                </div>
+                {/* อำเภอ */}
+                  <div className="fire-info-row">
+                  <span className="fire-info-icon">📍</span>
+                  <span className="fire-info-label">อำเภอ:</span>
+                  <span className="fire-info-value">{f.properties.ap_tn}</span>
+                </div>
+                {/* ตำบล */}
+               <div className="fire-info-row">
+                  <span className="fire-info-icon">🏘️</span>
+                  <span className="fire-info-label">ตำบล: </span>
+                  <span className="fire-info-value">{f.properties.tb_tn}</span>
+                </div>
+                {/* หมู่บ้าน */}
+                <div className="fire-info-row">
+                  <span className="fire-info-icon">🏡</span>
+                  <span className="fire-info-label">หมู่บ้าน: </span>
+                  <span className="fire-info-value">
+                    {f.properties.village || "ไม่ระบุ"}
+                  </span>
+                </div>
+                {/* อุณหภูมิ (แถวเน้น) */}
+                <div className="fire-info-row fire-highlight-row">
+                  <span className="fire-info-icon">🌡️</span>
+                  <span className="fire-info-label">อุณหภูมิที่ตรวจพบ: </span>
+                  <span className="fire-info-value fire-highlight-value">
+                    {celsius} °C
+                  </span>
+                </div>
+                {/* วันที่ตรวจพบ (ไทย) */}
+                <div className="fire-info-row">
+                  <span className="fire-info-icon">📅</span>
+                  <span className="fire-info-label">วันที่ตรวจพบ: </span>
+                  <span className="fire-info-value">
+                    {date.toLocaleDateString("th-TH", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </span>
+                </div>
+
+                {/* เวลา (ไทย) */}
+
+                <div className="fire-info-row">
+                  <span className="fire-info-icon">⏰</span>
+
+                  <span className="fire-info-label">เวลาที่ตรวจพบ: </span>
+
+                  <span className="fire-info-value">
+                    {hours}:{minutes} น.
+                  </span>
+                </div>
+
+                {/* ปุ่มไป Google Maps */}
+
+                <div className="fire-info-row fire-map-row">
+                  <a
+                    className="fire-map-button"
+                    href={f.properties.linkgmap}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🗺️ ดูบนแผนที่ Google Maps
+                  </a>
+                </div>
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );

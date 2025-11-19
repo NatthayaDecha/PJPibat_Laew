@@ -1,0 +1,93 @@
+/* src/css/Howto.css */
+
+.howtoPage {
+  width: 100%;
+  padding-top: 80px; /* ให้ไม่ไปทับ navbar */
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+
+.howto-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.howto-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+/* layout การ์ดทั้งหมด */
+.howto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 คอลัมน์ */
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 32px auto;
+}
+
+/* การ์ดทั่วไป */
+.howto-card {
+  background: #f9fbff;
+  border-radius: 18px;
+  padding: 18px 20px 16px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.howto-card h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.howto-card h3 {
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.howto-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.howto-card li {
+  margin-bottom: 5px;
+}
+
+/* โทนสีเฉพาะแต่ละประเภท */
+.howto-card-info {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+.howto-card-flood {
+  background: #ecfeff;
+  border-color: #a5f3fc;
+}
+
+.howto-card-fire {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.howto-card-warning {
+  background: #fef9c3;
+  border-color: #fde047;
+}
+
+/* responsive จอเล็กให้เรียงเดี่ยว */
+@media (max-width: 900px) {
+  .howto-grid {
+    grid-template-columns: 1fr;
+    padding: 0 12px;
+  }
+}

@@ -8,21 +8,18 @@ function MainPage() {
     <>
       <div className="flex felx-col navbar">
         <div className="flex-1 box1 ">
-          {/* <img src="/Logowed.png" alt="logo" width={"250px"}  /> */}
+          <img src="/Logowed.png" alt="logo" width={"250px"}  />
         </div>
         <div className="flex-1 box2"></div>
         <div className="flex-1 box3 text-center">
-          <ul>
+          {/* <ul>
             <li>
-              <Link to="/">การเเจ้งเตือน</Link>
-            </li>
-            <li>
-              <Link to="/">วิธีรับมือ</Link>
+              <Link to="/howto">วิธีรับมือ</Link>
             </li>
             <li>
               <Link to="/">เกี่ยวกับเรา</Link>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
 
@@ -31,16 +28,16 @@ function MainPage() {
         <div className="leftbar">
           <ul>
             <li>
+              <Link to="/suggest">เนะนำ</Link>
+            </li>
+            <li>
+              <Link to="/">วิธีรับมือ</Link>
+            </li>
+              <li>
               <Link to="/flood30">น้ำท่วม</Link>
             </li>
             <li>
               <Link to="/fire30">ไฟป่า</Link>
-            </li>
-            <li>
-              <Link to="/">เตือนภัย</Link>
-            </li>
-            <li>
-              <Link to="/">เเนะนำ</Link>
             </li>
           </ul>
         </div>
